@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Brand palette (Website Plan §2). Use as bg-navy, text-gold, border-sand-border… */
+@theme {
+  --color-navy: #0B2D52;
+  --color-navy-dark: #071E38;
+  --color-clinical-blue: #1F5C99;
+  --color-clinical-blue-hover: #184A7D;
+  --color-sand: #F4EDE1;
+  --color-sand-light: #FAF6F0;
+  --color-sand-border: #E2D7C3;
+  --color-gold: #B8873F;
+  --color-ice-blue: #E8F0F8;
+  --color-gold-light: #D9B377; /* gold on navy, AA contrast */
+  --color-whatsapp: #1E7E4A;
+  --color-whatsapp-hover: #17663B;
+
+  /* Soft, rounded surfaces instead of hard borders */
+  --shadow-soft: 0 12px 40px -18px rgb(11 45 82 / 0.25);
+  --shadow-lift: 0 24px 60px -24px rgb(11 45 82 / 0.4);
+  --shadow-glow: 0 10px 30px -10px rgb(31 92 153 / 0.55);
 }
 
+/* next/font exposes --font-outfit / --font-jakarta on <html>; `inline` resolves them at use site */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-outfit), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    color: var(--color-slate-800);
+    background-color: #ffffff;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-clinical-blue);
+    outline-offset: 2px;
+  }
+
+  /* Scroll-reveal: content is only hidden once JS has enabled it, so it never stays invisible */
+  .reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-ready [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Infinite review marquee: the track holds the list twice and slides by half its width */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@layer components {
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  }
+
+  .marquee-track {
+    width: max-content;
+    animation: marquee var(--marquee-duration, 60s) linear infinite;
+  }
+
+  /* Stop on hover, or when a link inside receives keyboard focus */
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow-x: auto;
+      mask-image: none;
+    }
+
+    .marquee-track {
+      animation: none;
+    }
+  }
 }
