@@ -47,10 +47,10 @@ export default function SurgeonSection() {
             <span className="inline-flex items-center rounded-full bg-ice-blue/80 px-2.5 py-0.5 text-xs font-semibold text-clinical-blue border border-clinical-blue/20">
               Robotic Knee Replacement
             </span>
-            <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-700 border border-slate-200">
+            <span className="inline-flex items-center rounded-full bg-ice-blue/80 px-2.5 py-0.5 text-xs font-semibold text-clinical-blue border border-clinical-blue/20">
               Arthroscopy &amp; Sports Injury
             </span>
-            <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-700 border border-slate-200">
+            <span className="inline-flex items-center rounded-full bg-ice-blue/80 px-2.5 py-0.5 text-xs font-semibold text-clinical-blue border border-clinical-blue/20">
               Revision Surgery
             </span>
           </div>
