@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { mainNavCategories } from "@/data/navigation";
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   // Lock page scroll and allow Escape to close while the menu is open
   useEffect(() => {
@@ -45,40 +47,60 @@ export default function MobileMenu() {
           aria-label="Main"
           className="fixed inset-x-0 bottom-0 top-16 z-50 overflow-y-auto bg-white px-4 pb-28 pt-4 lg:top-20"
         >
-          {mainNavCategories.map((cat) =>
-            cat.items.length === 0 ? (
+          {mainNavCategories.map((cat) => {
+            const isCatActive =
+              cat.href === "/"
+                ? pathname === "/"
+                : pathname === cat.href || (cat.href && pathname.startsWith(cat.href + "/"));
+
+            return cat.items.length === 0 ? (
               <Link
                 key={cat.title}
                 href={cat.href ?? "/"}
+                aria-current={isCatActive ? "page" : undefined}
                 onClick={() => setIsOpen(false)}
-                className="flex min-h-12 items-center border-b border-slate-100 font-heading text-lg font-bold text-navy"
+                className={`flex min-h-12 items-center border-b border-slate-100 font-heading text-lg ${
+                  isCatActive ? "font-bold text-clinical-blue" : "font-bold text-navy"
+                }`}
               >
                 {cat.title}
               </Link>
             ) : (
               <details key={cat.title} className="group border-b border-slate-100">
-                <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between font-heading text-lg font-bold text-navy [&::-webkit-details-marker]:hidden">
+                <summary
+                  className={`flex min-h-12 cursor-pointer list-none items-center justify-between font-heading text-lg [&::-webkit-details-marker]:hidden ${
+                    isCatActive ? "font-bold text-clinical-blue" : "font-bold text-navy"
+                  }`}
+                >
                   {cat.title}
                   <span className="text-xl text-clinical-blue transition-transform group-open:rotate-45" aria-hidden="true">
                     +
                   </span>
                 </summary>
-                <ul className="pb-3">
-                  {cat.items.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        className="flex min-h-11 items-center pl-3 text-base text-slate-700 hover:text-clinical-blue"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
+                <ul className="pb-3 space-y-1">
+                  {cat.items.map((item) => {
+                    const isItemActive = pathname === item.href;
+                    return (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          aria-current={isItemActive ? "page" : undefined}
+                          onClick={() => setIsOpen(false)}
+                          className={`flex min-h-11 items-center px-3 rounded-xl text-base ${
+                            isItemActive
+                              ? "bg-ice-blue font-bold text-clinical-blue"
+                              : "text-slate-700 hover:text-clinical-blue"
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </details>
-            )
-          )}
+            );
+          })}
         </nav>
       )}
     </div>

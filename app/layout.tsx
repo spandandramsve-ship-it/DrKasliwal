@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MobileBottomBar from "@/components/layout/MobileBottomBar";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 import JsonLd from "@/components/shared/JsonLd";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import { siteSchema } from "@/lib/schema";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 
-// Two typefaces only: Outfit for headings, Plus Jakarta Sans for body.
-// Mapped to Tailwind's font-heading / font-sans in globals.css (@theme inline).
+// Typography: Outfit for UI headings, Plus Jakarta Sans for body, Playfair Display for editorial branding.
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
@@ -21,6 +21,12 @@ const outfit = Outfit({
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-jakarta",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -54,8 +60,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-IN" className={`${outfit.variable} ${plusJakarta.variable}`}>
-      <body className="flex min-h-screen flex-col bg-white font-sans text-slate-800 antialiased">
+    <html lang="en-IN" suppressHydrationWarning className={`${outfit.variable} ${plusJakarta.variable} ${playfair.variable}`}>
+      <body suppressHydrationWarning className="flex min-h-screen flex-col bg-white font-sans text-slate-800 antialiased">
         <JsonLd data={siteSchema()} />
         <a
           href="#main"
@@ -69,6 +75,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <MobileBottomBar />
+        <FloatingWhatsApp />
         <SmoothScroll />
       </body>
     </html>

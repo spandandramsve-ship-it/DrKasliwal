@@ -1,124 +1,118 @@
 import Image from "next/image";
 import Link from "next/link";
-import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
-import { Wave } from "@/components/ui/Section";
-import { SITE_NAME, SITE_TAGLINE, STATS } from "@/lib/constants";
-import { heroChips, heroBadgeLinks } from "@/data/home";
+import { SITE_TAGLINE } from "@/lib/constants";
 
-// Plan §4.1
 export default function HeroSection() {
-  // Desktop: the hero fills one screen (100svh − 80px header + 64px stats-card overlap)
-  // so the first view ends cleanly at the fold instead of showing a sliver of the next card.
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-ice-blue via-white to-sand-light lg:flex lg:min-h-[calc(100svh-1rem)] lg:items-center">
-      {/* Soft background shapes */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-clinical-blue/10 blur-3xl" />
-        <div className="absolute right-0 top-1/3 h-[28rem] w-[28rem] rounded-full bg-gold/15 blur-3xl" />
+    <section className="relative flex h-[calc(100svh-4rem)] min-h-[560px] w-full items-center overflow-hidden bg-navy-dark lg:h-[calc(100svh-5rem)]">
+      {/* Background Photograph — aligned to the right so surgical team and VELYS console are clearly featured */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/doctor/hero_robotic_surgery.jpg"
+          alt="Orthopaedic surgeon performing advanced robotic joint replacement surgery with robotic navigation console"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[78%_center] lg:object-[85%_center]"
+        />
+        {/* Editorial Left-to-Right Gradient: deep navy canvas for text on left, clear view of surgeon and robot on right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-dark via-navy-dark/90 via-42% to-transparent sm:via-48% lg:via-42%" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-navy-dark/40" />
       </div>
 
-      <Container className="relative grid items-center gap-10 pb-20 pt-8 sm:pt-10 lg:grid-cols-12 lg:gap-12 lg:pb-[6.5rem] lg:pt-10">
-        <div className="lg:col-span-6">
-          {/* Brand line: styled, but not the H1 (plan §4 SEO note) */}
-          <p className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-navy shadow-soft ring-1 ring-navy/5 backdrop-blur">
-            {SITE_NAME}
-            <span className="h-1 w-1 rounded-full bg-gold" aria-hidden="true" />
-            <span className="text-gold">{SITE_TAGLINE}</span>
+      <Container className="relative z-10 flex h-full flex-col justify-center py-8 lg:py-14">
+        <div className="max-w-2xl">
+          {/* Main Brand Title — Prestigious Editorial Serif */}
+          <div className="font-serif text-3xl font-medium uppercase leading-[1.05] tracking-wide text-[#F4EDE1] sm:text-4xl md:text-5xl lg:text-6xl">
+            KASLIWAL
+            <br />
+            JOINT INSTITUTE
+          </div>
+
+          {/* Tagline */}
+          <p className="mt-3 text-xs font-semibold uppercase tracking-[0.26em] text-[#C9A364] sm:text-sm">
+            {SITE_TAGLINE}
           </p>
 
-          <h1 className="mt-5 font-heading text-4xl font-bold leading-[1.1] text-navy sm:text-5xl lg:text-[2.75rem] xl:text-[3.25rem]">
-            Advanced Robotic Joint Replacement &amp;{" "}
-            <span className="relative whitespace-nowrap text-clinical-blue">
-              Arthroscopy
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 300 12"
-                preserveAspectRatio="none"
-                className="absolute -bottom-2 left-0 h-3 w-full text-gold/70"
-              >
-                <path d="M2 9 C 80 2, 220 2, 298 8" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-              </svg>
-            </span>{" "}
-            in Nashik
+          {/* Subheading / Service Headline */}
+          <h1 className="mt-5 max-w-xl font-heading text-lg font-medium leading-snug text-[#E8EDF2] sm:text-xl md:text-2xl lg:text-3xl">
+            Advanced Robotic Joint Replacement &amp; Arthroscopy in Nashik
           </h1>
 
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600 xl:text-xl">
-            Robotic precision. Personalised alignment. Experienced surgical judgement, with{" "}
-            <strong className="font-semibold text-navy">Dr. Vishal Kasliwal</strong>.
-          </p>
+          {/* Specialties Inline Navigation */}
+          <nav
+            aria-label="Clinical focus areas"
+            className="mt-6 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs sm:text-sm text-slate-300"
+          >
+            <Link href="/knee-specialist-nashik" className="transition-colors hover:text-white">
+              Knee
+            </Link>
+            <span className="font-light text-slate-500" aria-hidden="true">
+              |
+            </span>
+            <Link href="/hip-specialist-nashik" className="transition-colors hover:text-white">
+              Hip
+            </Link>
+            <span className="font-light text-slate-500" aria-hidden="true">
+              |
+            </span>
+            <Link href="/shoulder-arthroscopy-nashik" className="transition-colors hover:text-white">
+              Shoulder
+            </Link>
+            <span className="font-light text-slate-500" aria-hidden="true">
+              |
+            </span>
+            <Link href="/knee-arthroscopy-nashik" className="transition-colors hover:text-white">
+              Arthroscopy
+            </Link>
+            <span className="font-light text-slate-500" aria-hidden="true">
+              |
+            </span>
+            <Link href="/revision-joint-replacement-nashik" className="transition-colors hover:text-white">
+              Revision Surgery
+            </Link>
+          </nav>
 
-          <div className="mt-7 flex flex-col gap-4 sm:flex-row">
-            <Button href="/book-appointment" size="lg" arrow>
-              Book a Consultation
-            </Button>
-            <Button href="/robotic-joint-replacement-nashik" variant="outline" size="lg" arrow>
-              Explore Our Treatments
-            </Button>
-          </div>
-
-          <ul className="mt-6 flex flex-wrap gap-2.5" aria-label="Specialities">
-            {heroChips.map((chip) => (
-              <li key={chip.label}>
-                <Link
-                  href={chip.href}
-                  className="inline-flex min-h-11 items-center rounded-full bg-white px-5 text-base text-navy shadow-soft ring-1 ring-navy/5 transition-colors hover:bg-navy hover:text-white"
-                >
-                  {chip.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Width capped so photo + badge card fit within one screen on laptops */}
-        <div className="relative mx-auto w-full max-w-xl lg:col-span-6 lg:mr-0 lg:max-w-[min(100%,32rem)] xl:max-w-[34rem]">
-          {/* Decorative ring behind the photo */}
-          <div
-            aria-hidden="true"
-            className="absolute -inset-4 rounded-[3rem] bg-gradient-to-br from-clinical-blue/25 via-transparent to-gold/30 blur-sm"
-          />
-          <div className="relative overflow-hidden rounded-[2.5rem] shadow-lift ring-8 ring-white">
-            <Image
-              src="/images/doctor/hero_section.jpeg"
-              alt="Dr. Vishal Kasliwal beside the VELYS robotic system with patient community"
-              width={1024}
-              height={765}
-              priority
-              sizes="(min-width: 1024px) 45vw, 100vw"
-              className="h-auto w-full object-cover"
-            />
-          </div>
-
-          {/* Floating chips */}
-          <div className="absolute -left-3 top-6 hidden rounded-2xl bg-white/95 px-5 py-3 shadow-lift backdrop-blur sm:block lg:-left-10">
-            <p className="font-heading text-2xl font-bold text-navy">{STATS.experience.value} years</p>
-            <p className="text-sm text-slate-600">of orthopaedic practice</p>
-          </div>
-
-          {/* Badge card (sand). Plan §4.1: no "first/only" claim without written proof. */}
-          <div className="relative -mt-14 ml-auto w-[94%] rounded-3xl bg-white/95 p-5 shadow-lift ring-1 ring-sand-border backdrop-blur">
-            <p className="font-heading text-lg font-bold leading-snug text-navy">
-              VELYS™ Robotic-Assisted Joint Replacement in Nashik
-            </p>
-            <ul className="mt-3 flex flex-wrap gap-1.5">
-              {heroBadgeLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="inline-flex min-h-11 items-center rounded-full bg-sand px-3.5 text-sm font-semibold text-navy transition-colors hover:bg-gold hover:text-white"
-                  >
-                    {link.label} <span aria-hidden="true">&nbsp;→</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Matte Action Buttons matching mockup */}
+          <div className="mt-7 flex flex-wrap items-center gap-3.5">
+            <Link
+              href="/book-appointment"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#246A92] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1D5677] sm:text-base"
+            >
+              <span>Book a Consultation</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              href="/robotic-joint-replacement-nashik"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/40 bg-transparent px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10 sm:text-base"
+            >
+              <span>Explore Our Treatments</span>
+              <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </Container>
 
-      {/* Curved bottom edge into the white section below */}
-      <Wave className="absolute inset-x-0 bottom-0" />
+      {/* Floating Bottom-Right Milestone Badge Card (shifted upwards so it doesn't overlap WhatsApp button) */}
+      <aside
+        aria-label="Centre milestone"
+        className="absolute bottom-20 right-6 z-20 hidden md:block sm:bottom-22 lg:bottom-24 lg:right-10"
+      >
+        <div className="max-w-[300px] rounded-2xl bg-[#E4E8D5] p-4 text-slate-900 shadow-lift ring-1 ring-black/5">
+          <p className="font-heading text-sm font-bold text-navy sm:text-base">
+            Nashik&apos;s Advanced
+          </p>
+          <p className="mt-0.5 text-xs font-semibold text-slate-700">
+            VELYS™ Robotic Joint Replacement Centre
+          </p>
+          <p className="mt-2 border-t border-slate-300/80 pt-1.5 text-xs font-semibold text-slate-600">
+            Robotic Knee <span className="font-light text-slate-400">|</span> Partial Knee{" "}
+            <span className="font-light text-slate-400">|</span> Hip Replacement
+          </p>
+        </div>
+      </aside>
     </section>
   );
 }
+

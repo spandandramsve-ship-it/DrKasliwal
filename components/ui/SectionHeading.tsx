@@ -16,19 +16,32 @@ interface SectionHeadingProps {
   className?: string;
 }
 
-/** Small pill label above a heading */
-export function Eyebrow({ children, tone = "default", className }: { children: React.ReactNode; tone?: "default" | "light"; className?: string }) {
+/** Refined editorial kicker above a heading (no AI-style pills or dots) */
+export function Eyebrow({
+  children,
+  tone = "default",
+  className,
+}: {
+  children: React.ReactNode;
+  tone?: "default" | "light";
+  className?: string;
+}) {
+  const light = tone === "light";
   return (
-    <p
-      className={cn(
-        "inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em]",
-        tone === "light" ? "bg-white/10 text-gold-light ring-1 ring-white/20" : "bg-sand text-gold ring-1 ring-sand-border",
-        className
-      )}
-    >
-      <span className={cn("h-1.5 w-1.5 rounded-full", tone === "light" ? "bg-gold-light" : "bg-gold")} aria-hidden="true" />
-      {children}
-    </p>
+    <div className={cn("inline-flex items-center gap-2.5", className)}>
+      <span
+        aria-hidden="true"
+        className={cn("h-px w-5", light ? "bg-gold-light/60" : "bg-gold")}
+      />
+      <span
+        className={cn(
+          "text-xs font-bold uppercase tracking-[0.22em]",
+          light ? "text-gold-light" : "text-clinical-blue"
+        )}
+      >
+        {children}
+      </span>
+    </div>
   );
 }
 

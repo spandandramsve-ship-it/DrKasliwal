@@ -7,7 +7,7 @@ import { knowledgePreview } from "@/data/home";
 // Plan §4.11
 export default function KnowledgePreviewSection() {
   return (
-    <Section aria-labelledby="knowledge-heading">
+    <Section size="md" width="xl" aria-labelledby="knowledge-heading">
       <SectionHeading
         id="knowledge-heading"
         eyebrow="Knowledge Centre"

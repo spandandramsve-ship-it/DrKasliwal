@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { mainNavCategories } from "@/data/navigation";
 
 const menuId = (title: string) => `nav-menu-${title.toLowerCase().replace(/\W+/g, "-")}`;
@@ -9,6 +10,23 @@ const menuId = (title: string) => `nav-menu-${title.toLowerCase().replace(/\W+/g
 export default function Navbar() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+
+  const isCategoryActive = (category: (typeof mainNavCategories)[number]) => {
+    if (!pathname) return false;
+    if (category.href === "/") {
+      return pathname === "/";
+    }
+    if (category.href && (pathname === category.href || pathname.startsWith(category.href + "/"))) {
+      return true;
+    }
+    if (category.items && category.items.length > 0) {
+      return category.items.some(
+        (item) => pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
+      );
+    }
+    return false;
+  };
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -34,13 +52,13 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="relative hidden items-center whitespace-nowrap text-[0.875rem] font-medium text-slate-700 xl:flex 2xl:gap-1 2xl:text-[0.9rem]"
+      className="relative hidden items-center whitespace-nowrap text-[0.8125rem] font-medium text-slate-700 xl:flex xl:gap-0.5 2xl:gap-1 2xl:text-[0.875rem]"
       aria-label="Main Navigation"
     >
-      {/* Home is omitted on desktop: the wordmark already links home */}
-      {mainNavCategories.filter((c) => c.href !== "/").map((category) => {
+      {mainNavCategories.map((category) => {
         const hasItems = category.items.length > 0;
         const isOpen = activeCategory === category.title;
+        const isActive = isCategoryActive(category);
         const targetHref = category.href || "/";
 
         if (!hasItems) {
@@ -48,7 +66,12 @@ export default function Navbar() {
             <Link
               key={category.title}
               href={targetHref}
-              className="px-2.5 py-2 rounded-full text-slate-700 hover:text-navy hover:bg-ice-blue transition"
+              aria-current={isActive ? "page" : undefined}
+              className={`px-2.5 py-1.5 rounded-full transition ${
+                isActive
+                  ? "bg-ice-blue text-clinical-blue font-bold shadow-2xs ring-1 ring-clinical-blue/25"
+                  : "text-slate-700 hover:text-navy hover:bg-ice-blue"
+              }`}
             >
               {category.title}
             </Link>
@@ -62,14 +85,19 @@ export default function Navbar() {
             onMouseEnter={() => setActiveCategory(category.title)}
             onMouseLeave={() => setActiveCategory(null)}
           >
-            <div className="flex items-center">
+            <div
+              className={`flex items-center rounded-full transition-colors ${
+                isOpen
+                  ? "bg-ice-blue text-clinical-blue font-bold ring-1 ring-clinical-blue/30"
+                  : isActive
+                  ? "bg-ice-blue text-clinical-blue font-bold shadow-2xs ring-1 ring-clinical-blue/25"
+                  : "text-slate-700 hover:bg-ice-blue hover:text-navy"
+              }`}
+            >
               <Link
                 href={targetHref}
-                className={`py-2 pl-2.5 pr-1 rounded-l-full transition flex items-center gap-1 ${
-                  isOpen
-                    ? "text-clinical-blue bg-ice-blue font-semibold"
-                    : "text-slate-700 hover:text-navy hover:bg-ice-blue"
-                }`}
+                aria-current={isActive ? "page" : undefined}
+                className="py-1.5 pl-2.5 pr-0.5 flex items-center text-inherit"
               >
                 <span>{category.title}</span>
               </Link>
@@ -80,9 +108,7 @@ export default function Navbar() {
                 aria-expanded={isOpen}
                 aria-controls={menuId(category.title)}
                 aria-label={`Toggle ${category.title} menu`}
-                className={`py-2 pl-1 pr-2 rounded-r-full transition ${
-                  isOpen ? "bg-ice-blue text-clinical-blue" : "text-slate-500 hover:bg-ice-blue hover:text-slate-800"
-                }`}
+                className="py-1.5 pl-0.5 pr-2 flex items-center text-inherit opacity-85 hover:opacity-100"
               >
                 <svg
                   className={`w-3.5 h-3.5 transition-transform duration-150 ${isOpen ? "rotate-180" : ""}`}
@@ -100,7 +126,6 @@ export default function Navbar() {
               <div
                 id={menuId(category.title)}
                 className="absolute left-0 top-full pt-1 z-50 w-72 origin-top-left"
-               
               >
                 <div className="rounded-3xl bg-white p-3 shadow-lift ring-1 ring-navy/5">
                   <div className="px-3 py-1.5 border-b border-slate-100 mb-1">
@@ -109,24 +134,37 @@ export default function Navbar() {
                     </span>
                   </div>
                   <div className="space-y-0.5">
-                    {category.items.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                       
-                        onClick={() => setActiveCategory(null)}
-                        className="block px-3 py-2 rounded-2xl hover:bg-ice-blue transition"
-                      >
-                        <span className="text-sm font-medium text-slate-800 hover:text-navy block">
-                          {item.label}
-                        </span>
-                        {item.description && (
-                          <span className="text-xs text-slate-500 mt-0.5 block line-clamp-1">
-                            {item.description}
+                    {category.items.map((item) => {
+                      const isItemActive = pathname === item.href;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          aria-current={isItemActive ? "page" : undefined}
+                          onClick={() => setActiveCategory(null)}
+                          className={`block px-3 py-2 rounded-2xl transition ${
+                            isItemActive
+                              ? "bg-ice-blue text-clinical-blue font-semibold ring-1 ring-clinical-blue/20"
+                              : "hover:bg-ice-blue text-slate-800"
+                          }`}
+                        >
+                          <span
+                            className={`text-sm block ${
+                              isItemActive
+                                ? "font-bold text-clinical-blue"
+                                : "font-medium text-slate-800 hover:text-navy"
+                            }`}
+                          >
+                            {item.label}
                           </span>
-                        )}
-                      </Link>
-                    ))}
+                          {item.description && (
+                            <span className="text-xs text-slate-500 mt-0.5 block line-clamp-1">
+                              {item.description}
+                            </span>
+                          )}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

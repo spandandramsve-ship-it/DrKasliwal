@@ -3,10 +3,87 @@ import Button from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { philosophyPillars } from "@/data/home";
 
+const pillarIcons = [
+  // 1: Personalised Alignment (Orthopedic anatomical alignment axis & caliper angle)
+  <svg
+    key="alignment"
+    className="h-6 w-6 text-clinical-blue"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth="1.75"
+    aria-hidden="true"
+  >
+    {/* Mechanical axis line and angle calibration */}
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v20" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 6h14M7 6v3m5-3v3m5-3v3" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M8 18l4 4 4-4" />
+    <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="1.75" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M10 12h4" />
+  </svg>,
+
+  // 2: Precision (Articulated robotic surgical arm with laser precision tip)
+  <svg
+    key="precision"
+    className="h-6 w-6 text-clinical-blue"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth="1.75"
+    aria-hidden="true"
+  >
+    {/* Robotic arm base, articulated joints, and surgical effector */}
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 21h6" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 21v-4l5-5" />
+    <circle cx="11" cy="12" r="2" stroke="currentColor" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M13 12l5-5" />
+    <circle cx="18" cy="7" r="2" stroke="currentColor" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M20 5l2-2m-4 0l2 2" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l2 2" />
+  </svg>,
+
+  // 3: Preserving What Matters (Protective joint preservation shield with native ligament cross)
+  <svg
+    key="preservation"
+    className="h-6 w-6 text-clinical-blue"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth="1.75"
+    aria-hidden="true"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 3l8 4v5c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4z"
+    />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v8m-3.5-4h7" />
+    <circle cx="12" cy="12" r="2" fill="currentColor" fillOpacity="0.2" />
+  </svg>,
+
+  // 4: Functional Recovery (Active walking rehabilitation gait & recovery ground line)
+  <svg
+    key="recovery"
+    className="h-6 w-6 text-clinical-blue"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth="1.75"
+    aria-hidden="true"
+  >
+    {/* Active walking patient recovering mobility */}
+    <circle cx="15" cy="4" r="2" stroke="currentColor" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M8 21l3-6 3-2 3 3 4-2" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M14 13l-2-2-4 2-3-2" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M11 15l-3 6" />
+    <path strokeLinecap="round" d="M3 21h18" strokeDasharray="2 3" />
+  </svg>,
+];
+
 // Plan §4.5
 export default function PhilosophySection() {
   return (
-    <Section aria-labelledby="philosophy-heading">
+    <Section size="md" width="xl" aria-labelledby="philosophy-heading">
       <div className="grid gap-8 lg:grid-cols-12">
         <div className="relative flex flex-col overflow-hidden rounded-[2.5rem] bg-navy p-8 text-white shadow-lift sm:p-10 lg:col-span-5">
           {/* Decorative circles */}
@@ -38,14 +115,22 @@ export default function PhilosophySection() {
                 index % 3 === 0 ? "bg-gradient-to-br from-sand-light to-white" : "bg-gradient-to-br from-ice-blue/70 to-white"
               }`}
             >
-              <span
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-white font-heading text-lg font-bold text-gold shadow-soft"
-                aria-hidden="true"
-              >
-                {index + 1}
-              </span>
-              <h3 className="mt-4 font-heading text-xl font-bold text-navy">{pillar.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-slate-600">{pillar.description}</p>
+              <div className="flex items-center justify-between">
+                <span
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-white font-heading text-lg font-bold text-navy shadow-soft ring-1 ring-slate-900/5"
+                  aria-hidden="true"
+                >
+                  {index + 1}
+                </span>
+                <span
+                  className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 text-clinical-blue"
+                  aria-hidden="true"
+                >
+                  {pillarIcons[index]}
+                </span>
+              </div>
+              <h3 className="mt-5 font-heading text-xl font-bold text-navy">{pillar.title}</h3>
+              <p className="mt-2.5 text-base leading-relaxed text-slate-600">{pillar.description}</p>
             </li>
           ))}
         </ul>

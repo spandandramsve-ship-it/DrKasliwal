@@ -16,7 +16,7 @@ interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   tone?: Tone;
   size?: "sm" | "md" | "lg";
   /** Container width */
-  width?: "sm" | "md" | "lg";
+  width?: "sm" | "md" | "lg" | "xl" | "full";
   /** Soft blurred colour shapes in the background */
   decor?: boolean;
   children: React.ReactNode;

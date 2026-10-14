@@ -1,88 +1,95 @@
+import Image from "next/image";
 import Link from "next/link";
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { careAreas } from "@/data/home";
 
-const stroke = { fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round", strokeLinejoin: "round" } as const;
-
-// Simple line icons + a soft tint per card (in data order: knee, hip, shoulder, trauma)
-const visuals = [
+const careImages = [
   {
-    tint: "from-ice-blue",
-    iconBg: "bg-white text-clinical-blue",
-    icon: <path {...stroke} d="M9 3v7l-2 4v7M15 3v7l2 4v7M7 14h10" />,
+    src: "/images/procedures/card_knee_care.jpg",
+    alt: "Advanced robotic knee replacement and arthroscopy care",
   },
   {
-    tint: "from-sand",
-    iconBg: "bg-white text-gold",
-    icon: <><circle {...stroke} cx="12" cy="7" r="3.5" /><path {...stroke} d="M12 10.5V21M8 14l4-2 4 2" /></>,
+    src: "/images/procedures/card_hip_care.jpg",
+    alt: "Modern hip joint reconstruction and ceramic replacement",
   },
   {
-    tint: "from-ice-blue",
-    iconBg: "bg-white text-clinical-blue",
-    icon: <><circle {...stroke} cx="8" cy="8" r="3" /><path {...stroke} d="M10.5 9.5 19 18M15 21l4-3" /></>,
+    src: "/images/procedures/card_shoulder_care.jpg",
+    alt: "Keyhole shoulder arthroscopy and rotator cuff repair",
   },
   {
-    tint: "from-sand",
-    iconBg: "bg-white text-gold",
-    icon: <path {...stroke} d="M12 3v18M3 12h18M7 7l10 10" />,
+    src: "/images/procedures/card_trauma_care.jpg",
+    alt: "Orthopaedic trauma management and fracture fixation",
   },
 ];
 
-// Plan §4.3
 export default function CareGrid() {
   return (
-    <Section tone="white" aria-labelledby="care-heading">
+    <Section size="sm" width="xl" tone="white" aria-labelledby="care-heading">
       <SectionHeading
         id="care-heading"
         eyebrow="Find the right treatment"
         title="Expert care for every joint"
-        intro="From arthritis and joint replacement to sports injuries and trauma, we provide comprehensive orthopaedic care using advanced technology and personalised treatment."
-        align="center"
+        intro="Comprehensive surgical and non-surgical orthopaedic solutions personalised to your needs."
+        align="left"
+        className="mb-6 sm:mb-8"
       />
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
         {careAreas.map((area, i) => {
-          const v = visuals[i % visuals.length];
+          const img = careImages[i % careImages.length];
           return (
             <article
               key={area.title}
-              className={`group flex flex-col rounded-[2rem] bg-gradient-to-br ${v.tint} to-white p-6 shadow-soft ring-1 ring-navy/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:p-8 motion-reduce:transform-none`}
+              className="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-clinical-blue/40 hover:shadow-lift"
             >
-              <div className="flex items-center gap-4">
-                <span className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-soft ${v.iconBg}`}>
-                  <svg viewBox="0 0 24 24" className="h-7 w-7" aria-hidden="true">
-                    {v.icon}
-                  </svg>
-                </span>
-                <h3 className="font-heading text-2xl font-bold text-navy">
-                  <Link href={area.href} className="hover:text-clinical-blue">
+              {/* Clinical Photograph (Clean, without repeated title badge) */}
+              <div className="relative h-36 w-full overflow-hidden bg-slate-100 sm:h-40">
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+              </div>
+
+              {/* Card Body */}
+              <div className="flex flex-1 flex-col p-4 sm:p-5">
+                <h3 className="font-heading text-lg font-bold text-navy transition-colors group-hover:text-clinical-blue sm:text-xl">
+                  <Link href={area.href} className="focus:outline-none">
                     {area.title}
                   </Link>
                 </h3>
-              </div>
-              <p className="mt-4 text-base leading-relaxed text-slate-600">{area.description}</p>
+                <p className="mt-1 text-sm leading-relaxed text-slate-600 line-clamp-2">
+                  {area.description}
+                </p>
 
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {area.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="inline-flex min-h-11 items-center rounded-full bg-white px-4 text-sm font-medium text-navy ring-1 ring-navy/10 transition-colors hover:bg-navy hover:text-white"
+                {/* Key Treatments Minimal Badges */}
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {area.links.slice(0, 3).map((link) => (
+                    <span
+                      key={link.label}
+                      className="rounded bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600"
                     >
                       {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+                    </span>
+                  ))}
+                </div>
 
-              <Link
-                href={area.href}
-                className="mt-auto inline-flex min-h-11 items-center pt-5 text-base font-semibold text-clinical-blue hover:text-navy"
-              >
-                Explore {area.title}
-                <span aria-hidden="true" className="ml-1 transition-transform group-hover:translate-x-1">→</span>
-              </Link>
+                {/* Direct Action Link */}
+                <div className="mt-auto pt-4">
+                  <Link
+                    href={area.href}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-clinical-blue transition-colors group-hover:text-navy"
+                  >
+                    <span>View treatments</span>
+                    <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  </Link>
+                </div>
+              </div>
             </article>
           );
         })}

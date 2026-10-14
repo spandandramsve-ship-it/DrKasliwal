@@ -10,7 +10,6 @@ import VelysTechnologySection from "@/components/sections/home/VelysTechnologySe
 import SurgeonSection from "@/components/sections/home/SurgeonSection";
 import JourneySection from "@/components/sections/home/JourneySection";
 import HospitalSection from "@/components/sections/home/HospitalSection";
-import StoriesSection from "@/components/sections/home/StoriesSection";
 import KnowledgePreviewSection from "@/components/sections/home/KnowledgePreviewSection";
 import HomeFAQSection from "@/components/sections/home/HomeFAQSection";
 import ClosingCTASection from "@/components/sections/home/ClosingCTASection";
@@ -42,11 +41,6 @@ export default function HomePage() {
       {/* 4.2 Trust & Key Numbers Bar */}
       <TrustBar />
 
-      {/* Google reviews marquee: streams in (live data can't be cached under Google's policy) */}
-      <Suspense fallback={<ReviewsMarqueeSkeleton />}>
-        <ReviewsMarquee />
-      </Suspense>
-
       {/* 4.3 Expert Care for Every Joint */}
       <CareGrid />
 
@@ -68,8 +62,10 @@ export default function HomePage() {
       {/* 4.9 Kasliwal Super Speciality Hospital */}
       <HospitalSection />
 
-      {/* 4.10 Patient Stories & Reviews */}
-      <StoriesSection />
+      {/* 4.10 Patient Stories & Verified Reviews (Combined) */}
+      <Suspense fallback={<ReviewsMarqueeSkeleton />}>
+        <ReviewsMarquee />
+      </Suspense>
 
       {/* 4.11 Knowledge Centre Preview */}
       <KnowledgePreviewSection />

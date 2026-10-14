@@ -5,29 +5,7 @@ import Button from "@/components/ui/Button";
 import { getReviewFeed } from "@/lib/reviews";
 import { RATING } from "@/lib/constants";
 import type { Review, ReviewFeed } from "@/types";
-
-/** Repeat short lists so one copy of the track is always wider than the screen */
-const MIN_ITEMS_PER_COPY = 8;
-/** Seconds each card takes to travel past (sets marquee speed) */
-const SECONDS_PER_CARD = 7;
-
-const AVATAR_GRADIENTS = [
-  "from-blue-600 to-indigo-700",
-  "from-teal-600 to-emerald-700",
-  "from-amber-500 to-orange-600",
-  "from-purple-600 to-indigo-800",
-  "from-cyan-600 to-blue-700",
-  "from-rose-500 to-pink-700",
-];
-
-function getAvatarGradient(name: string): string {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  const index = Math.abs(hash) % AVATAR_GRADIENTS.length;
-  return AVATAR_GRADIENTS[index];
-}
+import ReviewsScroller from "@/components/sections/home/ReviewsScroller";
 
 function GoogleIcon({ className }: { className?: string }) {
   return (
@@ -63,84 +41,6 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
-function ReviewCard({ review }: { review: Review }) {
-  const initial = review.author.trim().charAt(0).toUpperCase();
-  const gradient = getAvatarGradient(review.author);
-
-  return (
-    <figure className="relative mr-5 flex w-[320px] shrink-0 flex-col justify-between rounded-[2rem] border border-slate-200/80 bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-clinical-blue/30 hover:shadow-lift sm:w-[380px]">
-      <div>
-        {/* Top bar: Author + Verified status + Google Icon */}
-        <figcaption className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3 min-w-0">
-            {review.authorPhoto ? (
-              <Image
-                src={review.authorPhoto}
-                alt=""
-                width={48}
-                height={48}
-                className="h-12 w-12 rounded-full object-cover ring-2 ring-navy/5"
-              />
-            ) : (
-              <span
-                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} font-heading text-lg font-bold text-white shadow-soft`}
-              >
-                {initial}
-              </span>
-            )}
-            <div className="min-w-0">
-              <span className="block truncate font-heading text-base font-bold text-navy">
-                {review.author}
-              </span>
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 ring-1 ring-emerald-600/20">
-                  <svg viewBox="0 0 16 16" className="h-3 w-3 fill-emerald-600" aria-hidden="true">
-                    <path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z" />
-                  </svg>
-                  Verified Patient
-                </span>
-                {review.when && <span className="text-xs text-slate-400">{review.when}</span>}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200/70">
-            <GoogleIcon className="h-5 w-5" />
-          </div>
-        </figcaption>
-
-        {/* Rating row */}
-        <div className="mt-4 flex items-center gap-2">
-          <Stars rating={review.rating} />
-          <span className="rounded-md bg-amber-50 px-1.5 py-0.5 text-xs font-bold text-amber-800">
-            {review.rating.toFixed(1)}
-          </span>
-        </div>
-
-        {/* Review body */}
-        <blockquote className="mt-3 line-clamp-4 text-base leading-relaxed text-slate-700">
-          &ldquo;{review.text}&rdquo;
-        </blockquote>
-      </div>
-
-      {/* Footer link */}
-      {review.url && (
-        <div className="mt-5 border-t border-slate-100 pt-3">
-          <a
-            href={review.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-clinical-blue transition-colors hover:text-navy"
-          >
-            Posted on Google Maps
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-      )}
-    </figure>
-  );
-}
-
 function sourceNote(feed: ReviewFeed) {
   if (feed.source === "google") return "Reviews streamed directly from Google Business Profile, sorted by relevance.";
   if (feed.source === "curated") return "Selected public reviews from verified patients on Google Maps.";
@@ -155,76 +55,59 @@ export default async function ReviewsMarquee() {
   const feed = await getReviewFeed();
   if (!feed || feed.reviews.length === 0) return null;
 
-  const repeats = Math.max(1, Math.ceil(MIN_ITEMS_PER_COPY / feed.reviews.length));
-  const items = Array.from({ length: repeats }, () => feed.reviews).flat();
-  const duration = `${items.length * SECONDS_PER_CARD}s`;
-
   const rating = feed.rating ?? Number(RATING.value);
   const countLabel = feed.count ? `${feed.count.toLocaleString("en-IN")}+ Google reviews` : `${RATING.count} verified reviews`;
 
   return (
-    <section aria-labelledby="reviews-heading" className="relative overflow-hidden bg-gradient-to-b from-white via-ice-blue/25 to-white py-16 sm:py-20">
-      <Container>
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <Eyebrow>Patient Experiences</Eyebrow>
-            <h2 id="reviews-heading" className="mt-3 font-heading text-3xl font-bold tracking-tight text-navy sm:text-4xl">
-              Trusted by Patients Across Nashik
-            </h2>
-            <p className="mt-3 text-lg leading-relaxed text-slate-600">
-              Real recovery stories and feedback on robotic joint replacement, arthroscopy, and hospital care.
-            </p>
-          </div>
+    <section aria-labelledby="reviews-heading" className="relative overflow-hidden bg-gradient-to-b from-white via-ice-blue/25 to-white py-12 sm:py-16">
+      <Container size="xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <Eyebrow className="justify-center">Patient Stories &amp; Experiences</Eyebrow>
+          <h2 id="reviews-heading" className="mt-2.5 font-heading text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            Back to doing what you love.
+          </h2>
+          <p className="mt-2.5 text-base sm:text-lg leading-relaxed text-slate-600">
+            Hear from patients across Nashik and North Maharashtra about walking, climbing stairs, and returning to active life after robotic joint replacement and arthroscopy.
+          </p>
 
-          {/* Google rating trust card */}
-          <div className="flex items-center gap-4 rounded-3xl border border-slate-200/80 bg-white/95 p-4 shadow-soft backdrop-blur sm:px-6 sm:py-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-50 ring-1 ring-slate-200">
-              <GoogleIcon className="h-7 w-7" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-heading text-3xl font-bold leading-none text-navy">{rating.toFixed(1)}</span>
-                <div className="flex flex-col">
-                  <Stars rating={rating} />
-                  <span className="text-xs font-semibold text-emerald-700">★ Excellent rating</span>
-                </div>
+          {/* Centered Actions: Google trust badge + Patient stories button */}
+          <div className="mt-6 mb-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            {/* Google rating trust card */}
+            <div className="inline-flex items-center gap-3.5 rounded-2xl border border-slate-200/80 bg-white/95 px-4 py-2.5 shadow-soft backdrop-blur sm:px-5 sm:py-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200">
+                <GoogleIcon className="h-6 w-6" />
               </div>
-              <p className="mt-1 text-xs font-medium text-slate-500">{countLabel}</p>
+              <div className="text-left">
+                <div className="flex items-center gap-2">
+                  <span className="font-heading text-2xl font-bold leading-none text-navy">{rating.toFixed(1)}</span>
+                  <div className="flex flex-col">
+                    <Stars rating={rating} />
+                    <span className="text-[11px] font-semibold text-emerald-700">★ Excellent rating</span>
+                  </div>
+                </div>
+                <p className="text-[11px] font-medium text-slate-500">{countLabel}</p>
+              </div>
             </div>
+
+            <Button href="/patient-stories" variant="navy" size="sm" arrow>
+              Read Patient Stories
+            </Button>
           </div>
         </div>
       </Container>
 
-      {/* Marquee Track with smooth fade mask */}
-      <div className="relative mt-10 py-2">
-        <div className="marquee" style={{ ["--marquee-duration" as string]: duration }}>
-          <div className="marquee-track flex">
-            <div className="flex">
-              {items.map((review, i) => (
-                <ReviewCard key={`${review.id}-${i}`} review={review} />
-              ))}
-            </div>
-            {/* Identical copy for the seamless loop; hidden from screen readers and keyboard */}
-            <div className="flex" aria-hidden="true" inert>
-              {items.map((review, i) => (
-                <ReviewCard key={`copy-${review.id}-${i}`} review={review} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Vertical 3-Column Testimonial Scroller with smooth fade mask */}
+      <Container size="xl">
+        <ReviewsScroller reviews={feed.reviews} />
+      </Container>
 
-      <Container className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-slate-200/60 pt-6 sm:flex-row sm:items-center">
-        <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
-          <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
-          <span>{sourceNote(feed)}</span>
-        </div>
-        {feed.listingUrl && (
+      {feed.listingUrl && (
+        <Container className="mt-8 flex justify-center border-t border-slate-200/60 pt-6">
           <Button href={feed.listingUrl} variant="outline" size="sm" arrow>
             View All Reviews on Google Maps
           </Button>
-        )}
-      </Container>
+        </Container>
+      )}
     </section>
   );
 }

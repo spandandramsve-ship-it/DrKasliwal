@@ -1,75 +1,141 @@
+import Image from "next/image";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
-import ImageSlot from "@/components/ui/ImageSlot";
 import { Eyebrow } from "@/components/ui/SectionHeading";
-import { DOCTOR_NAME, DOCTOR_TITLE, STATS } from "@/lib/constants";
-import { surgeonTraining, surgeonExpertise } from "@/data/home";
+import { DOCTOR_NAME } from "@/lib/constants";
 
-// Plan §4.7
 export default function SurgeonSection() {
   return (
-    <Section decor aria-labelledby="surgeon-heading">
-      <div className="grid items-center gap-12 lg:grid-cols-12">
-        <div className="relative lg:col-span-5">
-          <div aria-hidden="true" className="absolute -inset-3 rotate-3 rounded-[2.75rem] bg-gradient-to-br from-sand to-ice-blue" />
-          <ImageSlot
-            src="/images/doctor/Dr_kasliwal.png"
-            alt={`Portrait of ${DOCTOR_NAME}`}
-            placeholderLabel="Professional portrait of Dr. Vishal Kasliwal"
-            className="relative aspect-[4/5] bg-gradient-to-b from-ice-blue via-white to-sand-light/40"
-            imageClassName="object-contain object-bottom"
-          />
-          <div className="absolute -bottom-6 left-6 right-6 grid grid-cols-2 gap-3 rounded-3xl bg-white p-4 text-center shadow-lift ring-1 ring-navy/5 sm:left-10 sm:right-10">
-            <div>
-              <p className="font-heading text-2xl font-bold text-navy">{STATS.experience.value}</p>
-              <p className="text-sm text-slate-600">Years of practice</p>
-            </div>
-            <div>
-              <p className="font-heading text-2xl font-bold text-navy">{STATS.procedures.value}</p>
-              <p className="text-sm text-slate-600">Procedures</p>
-            </div>
+    <Section size="sm" width="xl" aria-labelledby="surgeon-heading" className="!py-6 sm:!py-8">
+      <div className="grid items-center gap-6 lg:grid-cols-12 lg:gap-10 xl:gap-12">
+        {/* Left Column: Clean Doctor Portrait (No text overlay) */}
+        <div className="flex justify-center lg:col-span-5">
+          <div className="relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[380px] aspect-[4/4.6] overflow-hidden rounded-2xl bg-gradient-to-b from-ice-blue via-white to-sand-light/40 border border-slate-200/80 shadow-md sm:rounded-3xl">
+            <Image
+              src="/images/doctor/Dr_kasliwal.png"
+              alt={`Portrait of ${DOCTOR_NAME}`}
+              fill
+              sizes="(min-width: 1024px) 380px, 300px"
+              className="object-contain object-bottom"
+              priority
+            />
           </div>
         </div>
 
-        <div className="pt-6 lg:col-span-7 lg:pt-0">
+        {/* Right Column: Balanced, rich, compact surgeon information */}
+        <div className="flex flex-col justify-center lg:col-span-7">
           <Eyebrow>Meet the surgeon</Eyebrow>
-          <h2 id="surgeon-heading" className="mt-4 font-heading text-3xl font-bold text-navy sm:text-4xl">
+
+          <h2
+            id="surgeon-heading"
+            className="mt-1.5 font-heading text-2xl font-bold tracking-tight text-navy sm:text-3xl lg:text-4xl"
+          >
             {DOCTOR_NAME}
           </h2>
-          <p className="mt-2 text-lg font-semibold text-clinical-blue">{DOCTOR_TITLE}</p>
 
-          <p className="mt-6 text-lg leading-relaxed text-slate-700">
-            Trained at Breach Candy Hospital, Mumbai under Dr. Arun Mullaji for joint replacement, with fellowship
-            training in arthroscopy under Dr. Sachin Tapasvi, Pune, and advanced shoulder arthroscopy training under
-            Dr. Jin Young Park, Korea.
+          <div className="mt-1 space-y-0.5">
+            <p className="text-sm sm:text-base font-semibold text-clinical-blue">
+              M.S. Orthopaedics
+            </p>
+            <p className="text-xs sm:text-sm font-medium text-slate-700">
+              Fellowship-trained Joint Replacement &amp; Arthroscopy Surgeon
+            </p>
+          </div>
+
+          {/* Specialty Focus Badges */}
+          <div className="mt-2.5 flex flex-wrap gap-2">
+            <span className="inline-flex items-center rounded-full bg-ice-blue/80 px-2.5 py-0.5 text-xs font-semibold text-clinical-blue border border-clinical-blue/20">
+              Robotic Knee Replacement
+            </span>
+            <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-700 border border-slate-200">
+              Arthroscopy &amp; Sports Injury
+            </span>
+            <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-700 border border-slate-200">
+              Revision Surgery
+            </span>
+          </div>
+
+          <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-700 max-w-2xl">
+            Trained at Breach Candy Hospital, Mumbai under Dr. Arun Mullaji for joint replacement, with fellowship in arthroscopy under Dr. Sachin Tapasvi, Pune, and advanced shoulder arthroscopy in Seoul, Korea under Dr. Jin Young Park.
           </p>
 
-          <h3 className="sr-only">Training</h3>
-          <ul className="mt-6 space-y-3">
-            {surgeonTraining.map((t) => (
-              <li
-                key={t.mentor}
-                className="flex flex-col gap-1 rounded-2xl bg-ice-blue/60 px-5 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
-              >
-                <span className="text-base font-semibold text-navy">{t.focus}</span>
-                <span className="text-sm text-slate-600">
-                  {t.mentor}, {t.place}
-                </span>
-              </li>
-            ))}
-          </ul>
+          {/* 2x2 Grid of Stat & Specialty Cards */}
+          <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3">
+            {/* 1. 15+ Years of experience */}
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200/90 bg-white p-3 shadow-2xs hover:border-clinical-blue/40 transition-colors">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ice-blue text-clinical-blue border border-clinical-blue/25 shadow-2xs">
+                <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 3.5v4a3.5 3.5 0 0 0 7 0v-4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 3.5h3m4 0h3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 11v4.5a4.5 4.5 0 0 0 9 0V13" />
+                  <circle cx="17" cy="11.5" r="2.25" stroke="currentColor" strokeWidth={1.8} />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <p className="font-heading text-base sm:text-lg font-bold text-navy leading-tight">15+</p>
+                <p className="text-xs text-slate-600 leading-tight">Years Surgical Experience</p>
+              </div>
+            </div>
 
-          <ul className="mt-6 flex flex-wrap gap-2" aria-label="Areas of expertise">
-            {surgeonExpertise.map((area) => (
-              <li key={area} className="rounded-full bg-sand px-4 py-2 text-sm font-semibold text-navy">
-                {area}
-              </li>
-            ))}
-          </ul>
+            {/* 2. ~5,000 Procedures */}
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200/90 bg-white p-3 shadow-2xs hover:border-clinical-blue/40 transition-colors">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ice-blue text-clinical-blue border border-clinical-blue/25 shadow-2xs">
+                <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M18.5 2.5a2.121 2.121 0 0 1 3 3L11.5 15.5l-4 1 1-4 10-10z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 6l3 3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.5 21h6" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.5 16l-2 2a1.5 1.5 0 0 0 0 2.1" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <p className="font-heading text-base sm:text-lg font-bold text-navy leading-tight">~5,000</p>
+                <p className="text-xs text-slate-600 leading-tight">Procedures Performed</p>
+              </div>
+            </div>
 
-          <div className="mt-8">
-            <Button href="/dr-vishal-kasliwal" variant="navy" arrow>
+            {/* 3. Joint Replacement */}
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200/90 bg-white p-3 shadow-2xs hover:border-clinical-blue/40 transition-colors">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ice-blue text-clinical-blue border border-clinical-blue/25 shadow-2xs">
+                <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 4.5c0 2.5 2 4 5 4s5-1.5 5-4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v2.5" />
+                  <rect x="4.5" y="11.5" width="15" height="2.5" rx="1" stroke="currentColor" strokeWidth={1.8} />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.5 19.5h5" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <p className="font-heading text-xs sm:text-sm font-bold text-navy leading-tight">Joint Replacement</p>
+                <p className="text-xs text-slate-600 leading-tight">Primary &amp; Revision</p>
+              </div>
+            </div>
+
+            {/* 4. Arthroscopy */}
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200/90 bg-white p-3 shadow-2xs hover:border-clinical-blue/40 transition-colors">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ice-blue text-clinical-blue border border-clinical-blue/25 shadow-2xs">
+                <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <rect x="3" y="14" width="6.5" height="5.5" rx="1.2" stroke="currentColor" strokeWidth={1.8} />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.25 14v-2" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 15.5l9-9" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.5 5l3 3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 3.5l1.5-1.5" />
+                  <circle cx="18" cy="5" r="0.75" fill="currentColor" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <p className="font-heading text-xs sm:text-sm font-bold text-navy leading-tight">Arthroscopy</p>
+                <p className="text-xs text-slate-600 leading-tight">Knee &amp; Shoulder</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="mt-4 sm:mt-5 flex flex-wrap items-center gap-3">
+            <Button href="/dr-vishal-kasliwal" variant="navy" size="sm" arrow>
               Read Dr. Kasliwal&apos;s Story
+            </Button>
+            <Button href="/contact" variant="outline" size="sm">
+              Book Consultation
             </Button>
           </div>
         </div>
