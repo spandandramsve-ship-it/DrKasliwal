@@ -7,7 +7,12 @@ import { mainNavCategories } from "@/data/navigation";
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
   const pathname = usePathname();
+
+  const toggleCategory = (title: string) => {
+    setOpenCategories((prev) => ({ ...prev, [title]: !prev[title] }));
+  };
 
   // Lock page scroll and allow Escape to close while the menu is open
   useEffect(() => {
@@ -52,53 +57,81 @@ export default function MobileMenu() {
               cat.href === "/"
                 ? pathname === "/"
                 : pathname === cat.href || (cat.href && pathname.startsWith(cat.href + "/"));
+            const hasItems = cat.items.length > 0;
+            const isExpanded = !!openCategories[cat.title];
 
-            return cat.items.length === 0 ? (
-              <Link
-                key={cat.title}
-                href={cat.href ?? "/"}
-                aria-current={isCatActive ? "page" : undefined}
-                onClick={() => setIsOpen(false)}
-                className={`flex min-h-12 items-center border-b border-slate-100 font-heading text-lg ${
-                  isCatActive ? "font-bold text-clinical-blue" : "font-bold text-navy"
-                }`}
-              >
-                {cat.title}
-              </Link>
-            ) : (
-              <details key={cat.title} className="group border-b border-slate-100">
-                <summary
-                  className={`flex min-h-12 cursor-pointer list-none items-center justify-between font-heading text-lg [&::-webkit-details-marker]:hidden ${
-                    isCatActive ? "font-bold text-clinical-blue" : "font-bold text-navy"
-                  }`}
-                >
-                  {cat.title}
-                  <span className="text-xl text-clinical-blue transition-transform group-open:rotate-45" aria-hidden="true">
-                    +
-                  </span>
-                </summary>
-                <ul className="pb-3 space-y-1">
-                  {cat.items.map((item) => {
-                    const isItemActive = pathname === item.href;
-                    return (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          aria-current={isItemActive ? "page" : undefined}
-                          onClick={() => setIsOpen(false)}
-                          className={`flex min-h-11 items-center px-3 rounded-xl text-base ${
-                            isItemActive
-                              ? "bg-ice-blue font-bold text-clinical-blue"
-                              : "text-slate-700 hover:text-clinical-blue"
-                          }`}
-                        >
-                          {item.label}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </details>
+            if (!hasItems) {
+              return (
+                <div key={cat.title} className="border-b border-slate-100">
+                  <Link
+                    href={cat.href ?? "/"}
+                    aria-current={isCatActive ? "page" : undefined}
+                    onClick={() => setIsOpen(false)}
+                    className={`flex min-h-12 items-center font-heading text-lg ${
+                      isCatActive ? "font-bold text-clinical-blue" : "font-bold text-navy"
+                    }`}
+                  >
+                    {cat.title}
+                  </Link>
+                </div>
+              );
+            }
+
+            return (
+              <div key={cat.title} className="border-b border-slate-100">
+                <div className="flex min-h-12 items-center justify-between gap-2">
+                  <Link
+                    href={cat.href ?? "/"}
+                    aria-current={isCatActive ? "page" : undefined}
+                    onClick={() => setIsOpen(false)}
+                    className={`flex-1 py-3 font-heading text-lg ${
+                      isCatActive ? "font-bold text-clinical-blue" : "font-bold text-navy"
+                    }`}
+                  >
+                    {cat.title}
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => toggleCategory(cat.title)}
+                    className="flex h-12 w-12 shrink-0 items-center justify-center text-clinical-blue transition-transform active:scale-95"
+                    aria-label={`Toggle ${cat.title} submenu`}
+                    aria-expanded={isExpanded}
+                  >
+                    <span
+                      className={`text-2xl font-light leading-none transition-transform duration-200 ${
+                        isExpanded ? "rotate-45 text-navy" : "text-clinical-blue"
+                      }`}
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </button>
+                </div>
+
+                {isExpanded && (
+                  <ul className="pb-3 pl-2 space-y-1">
+                    {cat.items.map((item) => {
+                      const isItemActive = pathname === item.href;
+                      return (
+                        <li key={item.href}>
+                          <Link
+                            href={item.href}
+                            aria-current={isItemActive ? "page" : undefined}
+                            onClick={() => setIsOpen(false)}
+                            className={`flex min-h-11 items-center px-3 rounded-xl text-base ${
+                              isItemActive
+                                ? "bg-ice-blue font-bold text-clinical-blue"
+                                : "text-slate-700 hover:text-clinical-blue"
+                            }`}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </div>
             );
           })}
         </nav>
