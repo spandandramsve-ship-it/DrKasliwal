@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
-import ImageSlot from "@/components/ui/ImageSlot";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { HOSPITAL_NAME, LOCATION_ADDRESS, LOCATION_CITY } from "@/lib/constants";
 
@@ -76,44 +76,46 @@ export default function HospitalSection() {
     <Section size="md" width="xl" aria-labelledby="hospital-heading">
       <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
         {/* Hospital Exterior Visual */}
-        <div className="relative overflow-hidden rounded-3xl border border-slate-200/90 shadow-md lg:order-2 lg:col-span-5">
-          <ImageSlot
+        <div className="relative aspect-[4/3.2] w-full overflow-hidden rounded-3xl border border-slate-200/90 shadow-lift lg:order-2 lg:col-span-5">
+          <Image
             src="/images/hospital/hospital.jpeg"
             alt={`Exterior of ${HOSPITAL_NAME}, Bosco Centre, Gangapur Road, Nashik`}
-            placeholderLabel="Exterior of Bosco Centre, Gangapur Road"
-            className="aspect-[4/3.5] w-full object-cover"
+            fill
+            sizes="(min-width: 1024px) 42vw, 100vw"
+            className="object-cover"
+            priority
           />
         </div>
 
         {/* Hospital Information & Feature Cards */}
         <div className="lg:col-span-7">
           <Eyebrow>Complete care under one roof</Eyebrow>
-          <h2 id="hospital-heading" className="mt-2.5 font-heading text-2xl font-bold text-navy sm:text-3xl lg:text-4xl">
+          <h2 id="hospital-heading" className="mt-2.5 font-heading text-3xl font-bold text-navy sm:text-4xl">
             {HOSPITAL_NAME}
           </h2>
-          <p className="mt-1 text-xs sm:text-sm font-medium text-slate-600">
+          <p className="mt-1 text-sm font-medium text-slate-600">
             {LOCATION_ADDRESS}, {LOCATION_CITY}
           </p>
 
-          <p className="mt-3.5 text-sm sm:text-base leading-relaxed text-slate-700">
+          <p className="mt-3.5 text-base sm:text-lg leading-relaxed text-slate-700">
             The dedicated home of Kasliwal Joint Institute: combining world-class robotic operation theatres, laminar airflow infection control, and specialized orthopaedic rehabilitation under one roof.
           </p>
 
           {/* Rich Hospital Feature Cards Grid */}
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+          <div className="mt-6 grid gap-3.5 sm:grid-cols-2">
             {hospitalFeatureCards.map((f) => (
               <div
                 key={f.title}
-                className="group flex items-start gap-3 rounded-xl border border-slate-200/80 bg-slate-50/70 p-3 shadow-2xs transition-all hover:bg-white hover:border-clinical-blue/40 hover:shadow-xs"
+                className="group flex items-start gap-3.5 rounded-2xl border border-slate-200/90 bg-slate-50/70 p-3.5 sm:p-4 shadow-2xs transition-all hover:bg-white hover:border-clinical-blue/40 hover:shadow-soft"
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ice-blue/80 text-clinical-blue border border-clinical-blue/20 transition-colors group-hover:bg-clinical-blue group-hover:text-white">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ice-blue/80 text-clinical-blue border border-clinical-blue/20 transition-colors group-hover:bg-clinical-blue group-hover:text-white">
                   {f.icon}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-heading text-sm font-bold text-navy leading-snug">
+                  <h3 className="font-heading text-base font-bold text-navy leading-snug">
                     {f.title}
                   </h3>
-                  <p className="mt-0.5 text-xs leading-relaxed text-slate-600">
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
                     {f.desc}
                   </p>
                 </div>
@@ -122,7 +124,7 @@ export default function HospitalSection() {
           </div>
 
           <div className="mt-7">
-            <Button href="/hospital" variant="navy" arrow>
+            <Button href="/hospital" variant="navy" arrow className="w-full sm:w-auto text-center justify-center">
               Explore Our Hospital
             </Button>
           </div>

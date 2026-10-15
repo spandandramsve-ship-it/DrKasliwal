@@ -14,7 +14,7 @@ const careImages = [
     alt: "Modern hip joint reconstruction and ceramic replacement",
   },
   {
-    src: "/images/procedures/card_shoulder_care.jpg",
+    src: "/images/procedures/card_shoulder_care_new.jpg",
     alt: "Keyhole shoulder arthroscopy and rotator cuff repair",
   },
   {
@@ -25,13 +25,13 @@ const careImages = [
 
 export default function CareGrid() {
   return (
-    <Section size="sm" width="xl" tone="white" aria-labelledby="care-heading">
+    <Section size="sm" width="xl" tone="white" aria-labelledby="care-heading" className="!pt-10 !pb-6 sm:!pt-12 sm:!pb-8">
       <SectionHeading
         id="care-heading"
         eyebrow="Find the right treatment"
         title="Expert care for every joint"
-        intro="Comprehensive surgical and non-surgical orthopaedic solutions personalised to your needs."
-        align="left"
+        intro="Comprehensive surgical and non-surgical orthopaedic solutions."
+        align="center"
         className="mb-6 sm:mb-8"
       />
 

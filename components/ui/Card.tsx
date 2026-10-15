@@ -19,7 +19,7 @@ const toneStyles = {
 };
 
 export default function Card({ children, className, href, tone = "white" }: CardProps) {
-  const classes = cn("flex flex-col rounded-3xl p-6 sm:p-8", toneStyles[tone], className);
+  const classes = cn("flex flex-col rounded-2xl sm:rounded-3xl p-5 sm:p-8", toneStyles[tone], className);
 
   if (href) {
     return (

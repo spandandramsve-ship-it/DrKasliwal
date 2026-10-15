@@ -39,17 +39,18 @@ const flagshipCards = [
 
 export default function FlagshipRoboticSection() {
   return (
-    <Section size="sm" width="xl" tone="white" aria-labelledby="flagship-heading" className="!py-2 sm:!py-3">
+    <Section size="sm" width="xl" tone="white" aria-labelledby="flagship-heading" className="!pt-6 !pb-6 sm:!pt-8 sm:!pb-8">
       {/* 1. Header Outside the Card */}
       <SectionHeading
         id="flagship-heading"
         eyebrow="Our flagship service"
         title="Robotic Knee Replacement"
-        intro="Robotic-assisted knee replacement combines advanced technology with surgical experience to create a personalised plan based on your unique anatomy."
-        align="left"
-        className="!mb-2.5 sm:!mb-3"
+        intro="Combining robotic precision with surgical experience to create a personalised plan for your unique anatomy."
+        align="center"
+        actionPosition="right"
+        className="mb-2 sm:mb-2.5"
         action={
-          <Button href="/robotic-knee-replacement-nashik" variant="navy" size="sm" arrow>
+          <Button href="/robotic-knee-replacement-nashik" variant="navy" size="sm" arrow className="w-full sm:w-auto text-center justify-center">
             Explore Robotic Knee
           </Button>
         }
@@ -59,7 +60,7 @@ export default function FlagshipRoboticSection() {
       <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-[#F8FAFC] shadow-lift ring-1 ring-slate-900/5 sm:rounded-3xl lg:rounded-[2rem]">
         <div className="flex flex-col lg:flex-row items-stretch">
           {/* Left Column: Full 3D Precision Knee Anatomy Illustration (stretched horizontally, full labels, screen-fit) */}
-          <div className="relative shrink-0 w-full lg:w-[340px] xl:w-[370px] aspect-[1156/1200] max-h-[360px] sm:max-h-[400px] lg:max-h-none overflow-hidden bg-[#D3EBF0] border-b lg:border-b-0 lg:border-r border-slate-200/80">
+          <div className="relative shrink-0 w-full lg:w-[340px] xl:w-[370px] aspect-[1156/1200] max-h-[280px] sm:max-h-[380px] lg:max-h-none overflow-hidden bg-[#D3EBF0] border-b lg:border-b-0 lg:border-r border-slate-200/80">
             <Image
               src="/images/procedures/flagship_robotic_knee_wide.jpg"
               alt="High precision robotic knee replacement anatomical alignment visualization with precision robotic guides"

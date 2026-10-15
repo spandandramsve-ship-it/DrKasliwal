@@ -59,10 +59,10 @@ export default function TrustBar() {
       className="relative z-10 border-b border-slate-200/80 bg-slate-50/80 py-10 sm:py-12"
     >
       <Container size="xl">
-        <div className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-soft ring-1 ring-slate-900/5 sm:p-8">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-slate-200">
+        <div className="rounded-2xl border border-slate-200/90 bg-white p-4.5 shadow-soft ring-1 ring-slate-900/5 sm:p-8">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-slate-200">
           {/* Stat 1: 15+ Years */}
-          <div className="flex items-center gap-4 lg:px-6 lg:first:pl-0">
+          <div className="flex items-center gap-3.5 sm:gap-4 lg:px-6 lg:first:pl-0">
             <svg
               className="h-9 w-9 shrink-0 text-navy"
               fill="none"

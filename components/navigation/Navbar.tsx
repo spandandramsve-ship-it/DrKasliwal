@@ -67,13 +67,19 @@ export default function Navbar() {
               key={category.title}
               href={targetHref}
               aria-current={isActive ? "page" : undefined}
-              className={`px-2.5 py-1.5 rounded-full transition ${
+              className={`relative px-3 py-1.5 rounded-lg transition-all duration-200 ${
                 isActive
-                  ? "bg-ice-blue text-clinical-blue font-bold shadow-2xs ring-1 ring-clinical-blue/25"
-                  : "text-slate-700 hover:text-navy hover:bg-ice-blue"
+                  ? "bg-clinical-blue/[0.12] text-navy font-semibold"
+                  : "text-slate-600 hover:text-navy hover:bg-slate-200/80"
               }`}
             >
-              {category.title}
+              <span>{category.title}</span>
+              {isActive && (
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-0 left-2.5 right-2.5 h-[2px] rounded-full bg-clinical-blue"
+                />
+              )}
             </Link>
           );
         }
@@ -86,18 +92,18 @@ export default function Navbar() {
             onMouseLeave={() => setActiveCategory(null)}
           >
             <div
-              className={`flex items-center rounded-full transition-colors ${
+              className={`relative flex items-center rounded-lg transition-all duration-200 ${
                 isOpen
-                  ? "bg-ice-blue text-clinical-blue font-bold ring-1 ring-clinical-blue/30"
+                  ? "bg-slate-200/85 text-navy font-semibold"
                   : isActive
-                  ? "bg-ice-blue text-clinical-blue font-bold shadow-2xs ring-1 ring-clinical-blue/25"
-                  : "text-slate-700 hover:bg-ice-blue hover:text-navy"
+                  ? "bg-clinical-blue/[0.12] text-navy font-semibold"
+                  : "text-slate-600 hover:bg-slate-200/80 hover:text-navy"
               }`}
             >
               <Link
                 href={targetHref}
                 aria-current={isActive ? "page" : undefined}
-                className="py-1.5 pl-2.5 pr-0.5 flex items-center text-inherit"
+                className="py-1.5 pl-3 pr-0.5 flex items-center text-inherit"
               >
                 <span>{category.title}</span>
               </Link>
@@ -108,7 +114,7 @@ export default function Navbar() {
                 aria-expanded={isOpen}
                 aria-controls={menuId(category.title)}
                 aria-label={`Toggle ${category.title} menu`}
-                className="py-1.5 pl-0.5 pr-2 flex items-center text-inherit opacity-85 hover:opacity-100"
+                className="py-1.5 pl-0.5 pr-2 flex items-center text-inherit opacity-75 hover:opacity-100"
               >
                 <svg
                   className={`w-3.5 h-3.5 transition-transform duration-150 ${isOpen ? "rotate-180" : ""}`}
@@ -119,6 +125,12 @@ export default function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
+              {isActive && (
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-0 left-2.5 right-2.5 h-[2px] rounded-full bg-clinical-blue"
+                />
+              )}
             </div>
 
             {/* Dropdown Menu */}

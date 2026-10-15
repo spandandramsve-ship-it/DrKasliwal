@@ -27,8 +27,10 @@ export default function JourneySection() {
         id="journey-heading"
         eyebrow="Your surgery journey"
         title="From consultation to getting back to life"
+        align="center"
+        className="mb-8 sm:mb-10"
         action={
-          <Button href="/patient-guide/recovery-after-surgery" variant="navy" arrow>
+          <Button href="/patient-guide/recovery-after-surgery" variant="navy" arrow className="w-full sm:w-auto text-center justify-center">
             Recovery Guide
           </Button>
         }
@@ -45,25 +47,22 @@ export default function JourneySection() {
             <div className="h-px flex-1 bg-slate-200" />
           </div>
 
-          <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 sm:grid-cols-3 lg:grid-cols-5">
             {phase1.map((step) => (
               <div
                 key={step.step}
-                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-2xs transition-all hover:border-clinical-blue/40 hover:shadow-soft"
+                className="group relative flex flex-col justify-between col-span-1 last:col-span-2 sm:last:col-span-1 rounded-2xl border border-slate-200/90 bg-white p-3 sm:p-5 shadow-2xs transition-all hover:border-clinical-blue/40 hover:shadow-soft"
               >
-                <div className="flex items-center justify-between gap-1 mb-2.5">
+                <div className="mb-2 sm:mb-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ice-blue text-xs font-bold text-clinical-blue border border-clinical-blue/25">
                     {step.step}
                   </span>
-                  <span className="text-xs font-semibold text-slate-500">
-                    Step 0{step.step}
-                  </span>
                 </div>
                 <div>
-                  <h3 className="font-heading text-base sm:text-lg font-bold text-navy leading-snug">
+                  <h3 className="font-heading text-sm sm:text-base lg:text-lg font-bold text-navy leading-snug">
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-sm sm:text-base leading-relaxed text-slate-600">
+                  <p className="mt-1 text-xs sm:text-sm leading-relaxed text-slate-600">
                     {step.desc}
                   </p>
                 </div>
@@ -82,25 +81,22 @@ export default function JourneySection() {
             <div className="h-px flex-1 bg-slate-200" />
           </div>
 
-          <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 sm:grid-cols-3 lg:grid-cols-5">
             {phase2.map((step) => (
               <div
                 key={step.step}
-                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-2xs transition-all hover:border-navy/40 hover:shadow-soft"
+                className="group relative flex flex-col justify-between col-span-1 last:col-span-2 sm:last:col-span-1 rounded-2xl border border-slate-200/90 bg-white p-3 sm:p-5 shadow-2xs transition-all hover:border-navy/40 hover:shadow-soft"
               >
-                <div className="flex items-center justify-between gap-1 mb-2.5">
+                <div className="mb-2 sm:mb-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-navy border border-slate-200">
                     {step.step}
                   </span>
-                  <span className="text-xs font-semibold text-slate-500">
-                    Step {step.step < 10 ? `0${step.step}` : step.step}
-                  </span>
                 </div>
                 <div>
-                  <h3 className="font-heading text-base sm:text-lg font-bold text-navy leading-snug">
+                  <h3 className="font-heading text-sm sm:text-base lg:text-lg font-bold text-navy leading-snug">
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-sm sm:text-base leading-relaxed text-slate-600">
+                  <p className="mt-1 text-xs sm:text-sm leading-relaxed text-slate-600">
                     {step.desc}
                   </p>
                 </div>
@@ -110,7 +106,7 @@ export default function JourneySection() {
         </div>
       </div>
 
-      <p className="mt-5 text-sm leading-relaxed text-slate-500">
+      <p className="mt-6 text-center text-sm leading-relaxed text-slate-500">
         Timelines vary by individual. Dr. Kasliwal and your care team guide you through every milestone.
       </p>
     </Section>

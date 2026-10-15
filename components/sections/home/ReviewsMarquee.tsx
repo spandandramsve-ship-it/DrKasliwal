@@ -71,9 +71,9 @@ export default async function ReviewsMarquee() {
           </p>
 
           {/* Centered Actions: Google trust badge + Patient stories button */}
-          <div className="mt-6 mb-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+          <div className="mt-6 mb-2 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-6">
             {/* Google rating trust card */}
-            <div className="inline-flex items-center gap-3.5 rounded-2xl border border-slate-200/80 bg-white/95 px-4 py-2.5 shadow-soft backdrop-blur sm:px-5 sm:py-3">
+            <div className="inline-flex w-full sm:w-auto items-center justify-center gap-3.5 rounded-2xl border border-slate-200/80 bg-white/95 px-4 py-2.5 shadow-soft backdrop-blur sm:px-5 sm:py-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200">
                 <GoogleIcon className="h-6 w-6" />
               </div>
@@ -89,7 +89,7 @@ export default async function ReviewsMarquee() {
               </div>
             </div>
 
-            <Button href="/patient-stories" variant="navy" size="sm" arrow>
+            <Button href="/patient-stories" variant="navy" size="sm" arrow className="w-full sm:w-auto text-center justify-center">
               Read Patient Stories
             </Button>
           </div>
@@ -102,8 +102,8 @@ export default async function ReviewsMarquee() {
       </Container>
 
       {feed.listingUrl && (
-        <Container className="mt-8 flex justify-center border-t border-slate-200/60 pt-6">
-          <Button href={feed.listingUrl} variant="outline" size="sm" arrow>
+        <Container className="mt-8 flex justify-center border-t border-slate-200/60 pt-6 px-4">
+          <Button href={feed.listingUrl} variant="outline" size="sm" arrow className="w-full sm:w-auto text-center justify-center">
             View All Reviews on Google Maps
           </Button>
         </Container>

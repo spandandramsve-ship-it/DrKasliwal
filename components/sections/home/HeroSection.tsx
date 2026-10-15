@@ -17,14 +17,14 @@ export default function HeroSection() {
           className="object-cover object-[78%_center] lg:object-[85%_center]"
         />
         {/* Editorial Left-to-Right Gradient: deep navy canvas for text on left, clear view of surgeon and robot on right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-dark via-navy-dark/90 via-42% to-transparent sm:via-48% lg:via-42%" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-dark via-navy-dark/95 via-55% to-navy-dark/70 sm:via-navy-dark/90 sm:via-48% sm:to-transparent lg:via-42%" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-navy-dark/40" />
       </div>
 
       <Container className="relative z-10 flex h-full flex-col justify-center py-8 lg:py-14">
         <div className="max-w-2xl">
           {/* Main Brand Title — Prestigious Editorial Serif */}
-          <div className="font-serif text-3xl font-medium uppercase leading-[1.05] tracking-wide text-[#F4EDE1] sm:text-4xl md:text-5xl lg:text-6xl">
+          <div className="font-serif text-[1.75rem] font-medium uppercase leading-[1.08] tracking-wide text-[#F4EDE1] sm:text-4xl md:text-5xl lg:text-6xl">
             KASLIWAL
             <br />
             JOINT INSTITUTE
@@ -75,17 +75,17 @@ export default function HeroSection() {
           </nav>
 
           {/* Matte Action Buttons matching mockup */}
-          <div className="mt-7 flex flex-wrap items-center gap-3.5">
+          <div className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5">
             <Link
               href="/book-appointment"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#246A92] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1D5677] sm:text-base"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-[#246A92] px-5 py-3 sm:py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1D5677] sm:text-base text-center"
             >
               <span>Book a Consultation</span>
               <span aria-hidden="true">→</span>
             </Link>
             <Link
               href="/robotic-joint-replacement-nashik"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/40 bg-transparent px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10 sm:text-base"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg border border-white/40 bg-transparent px-5 py-3 sm:py-2.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10 sm:text-base text-center"
             >
               <span>Explore Our Treatments</span>
               <span aria-hidden="true">→</span>

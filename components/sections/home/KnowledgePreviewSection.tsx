@@ -12,8 +12,10 @@ export default function KnowledgePreviewSection() {
         id="knowledge-heading"
         eyebrow="Knowledge Centre"
         title="Questions patients ask us every day"
+        align="center"
+        className="mb-8 sm:mb-10"
         action={
-          <Button href="/knowledge-centre" variant="outline" arrow>
+          <Button href="/knowledge-centre" variant="outline" arrow className="w-full sm:w-auto text-center justify-center">
             View All Articles
           </Button>
         }

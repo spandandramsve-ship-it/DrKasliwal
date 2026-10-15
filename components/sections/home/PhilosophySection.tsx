@@ -83,9 +83,9 @@ const pillarIcons = [
 // Plan §4.5
 export default function PhilosophySection() {
   return (
-    <Section size="md" width="xl" aria-labelledby="philosophy-heading">
+    <Section size="md" width="xl" aria-labelledby="philosophy-heading" className="!pt-4 !pb-12 sm:!pt-6 sm:!pb-14">
       <div className="grid gap-8 lg:grid-cols-12">
-        <div className="relative flex flex-col overflow-hidden rounded-[2.5rem] bg-navy p-8 text-white shadow-lift sm:p-10 lg:col-span-5">
+        <div className="relative flex flex-col overflow-hidden rounded-3xl sm:rounded-[2.5rem] bg-navy p-6 sm:p-8 lg:p-10 text-white shadow-lift lg:col-span-5">
           {/* Decorative circles */}
           <div aria-hidden="true" className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/5" />
           <div aria-hidden="true" className="absolute -bottom-20 -left-10 h-48 w-48 rounded-full bg-gold/10" />
@@ -93,25 +93,25 @@ export default function PhilosophySection() {
           <div className="relative">
             <Eyebrow tone="light">Our surgical philosophy</Eyebrow>
           </div>
-          <h2 id="philosophy-heading" className="relative mt-6 font-heading text-3xl font-bold leading-tight sm:text-4xl">
+          <h2 id="philosophy-heading" className="relative mt-5 sm:mt-6 font-heading text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
             Not every knee is the same. So why should every knee be replaced the same way?
           </h2>
-          <p className="relative mt-6 text-lg leading-relaxed text-slate-200">
+          <p className="relative mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-slate-200">
             We plan each operation around your anatomy, use minimally invasive technique where appropriate, and
             preserve what matters in your own knee.
           </p>
-          <div className="relative mt-auto pt-8">
-            <Button href="/surgical-philosophy" variant="outline-light" arrow>
+          <div className="relative mt-auto pt-6 sm:pt-8">
+            <Button href="/surgical-philosophy" variant="outline-light" arrow className="w-full sm:w-auto text-center justify-center">
               Our Surgical Philosophy
             </Button>
           </div>
         </div>
 
-        <ul className="grid gap-6 sm:grid-cols-2 lg:col-span-7">
+        <ul className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:col-span-7">
           {philosophyPillars.map((pillar, index) => (
             <li
               key={pillar.title}
-              className={`rounded-[2rem] p-6 shadow-soft ring-1 ring-navy/5 sm:p-8 ${
+              className={`rounded-3xl p-5 sm:p-8 shadow-soft ring-1 ring-navy/5 ${
                 index % 3 === 0 ? "bg-gradient-to-br from-sand-light to-white" : "bg-gradient-to-br from-ice-blue/70 to-white"
               }`}
             >
