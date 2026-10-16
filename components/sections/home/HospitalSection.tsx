@@ -9,10 +9,28 @@ const hospitalFeatureCards = [
     title: "Modern Operation Theatres",
     desc: "Equipped with Johnson & Johnson VELYS™ robotic system & HD surgical suites.",
     icon: (
-      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v4m-7 5a7 7 0 0 1 14 0H5z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 15h6m-3 0v6m-5 0h10" />
-        <circle cx="12" cy="11" r="1.5" fill="currentColor" />
+      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        {/* Overhead Operation Theatre Lamp */}
+        <path d="M2 2.5h2.5l2 2.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        <g transform="translate(6, 4) rotate(42)">
+          <rect x="-0.5" y="0" width="7.5" height="3" rx="1.2" fill="currentColor" />
+          <path d="M0 4.2h1.5M2.5 4.2h1.5M5 4.2h1.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+        </g>
+        {/* Pillow */}
+        <rect x="3.5" y="10.8" width="3.5" height="1.8" rx="0.9" fill="currentColor" />
+        {/* Operating Bed Surface / Mattress */}
+        <path
+          d="M3 13.2h16a1.5 1.5 0 0 1 1.5 1.5v.4a1 1 0 0 1-1 1H3.5a1.5 1.5 0 0 1-1.5-1.5v-.4A1.5 1.5 0 0 1 3 13.2Z"
+          fill="currentColor"
+        />
+        {/* Sub-frame Rail */}
+        <path d="M3.5 16.8h15" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+        {/* Scissor / X-Lift Mechanism */}
+        <path d="M7 16.8l8.5 3.8M15.5 16.8l-8.5 3.8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        {/* Wheel Base & Wheels */}
+        <path d="M5 20.6h12.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <circle cx="5.5" cy="22" r="1.2" fill="currentColor" />
+        <circle cx="16.5" cy="22" r="1.2" fill="currentColor" />
       </svg>
     ),
   },
@@ -33,11 +51,26 @@ const hospitalFeatureCards = [
     title: "Dedicated Physiotherapy Team",
     desc: "In-house rehab specialists guiding same-day mobilization and daily recovery.",
     icon: (
-      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <circle cx="13" cy="4" r="2" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M7 21l3-5 2.5 2 4.5-5" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 11l4-2 3 3" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5 14l3.5-3" />
+      <svg
+        className="h-5 w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        {/* Standing Physiotherapist */}
+        <circle cx="13" cy="4" r="2.2" />
+        <path d="M8.5 14v-4a2.5 2.5 0 0 1 2.5-2.5h3.5a2.5 2.5 0 0 1 2.5 2.5v3.5" />
+        <path d="M9 10.5l3.5 3.5" />
+        <path d="M17 10l-2 3" />
+        {/* Patient Mobilized Knee & Leg */}
+        <path d="M3 16.5h5.5l3.5-3.5h6a1.5 1.5 0 0 1 0 3h-5l-3.5 3.5H3" />
+        {/* Patient Head on Pillow */}
+        <circle cx="17.5" cy="18.5" r="2" />
+        <path d="M15.5 22h4" />
       </svg>
     ),
   },

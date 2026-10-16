@@ -4,42 +4,41 @@ import { Eyebrow } from "@/components/ui/SectionHeading";
 import { philosophyPillars } from "@/data/home";
 
 const pillarIcons = [
-  // 1: Personalised Alignment (Orthopedic anatomical alignment axis & caliper angle)
+  // 1: Personalised Alignment (Patient profile avatar inside circle, matching user reference)
   <svg
     key="alignment"
     className="h-6 w-6 text-clinical-blue"
-    fill="none"
     viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="1.75"
+    fill="none"
     aria-hidden="true"
   >
-    {/* Mechanical axis line and angle calibration */}
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v20" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M5 6h14M7 6v3m5-3v3m5-3v3" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M8 18l4 4 4-4" />
-    <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="1.75" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M10 12h4" />
+    <circle cx="12" cy="12" r="9.25" stroke="currentColor" strokeWidth="2" />
+    <circle cx="12" cy="9.2" r="3.2" fill="currentColor" />
+    <path
+      d="M6.5 18.3c.7-2.6 2.8-4.1 5.5-4.1s4.8 1.5 5.5 4.1a8.25 8.25 0 0 1-11 0Z"
+      fill="currentColor"
+    />
   </svg>,
 
-  // 2: Precision (Articulated robotic surgical arm with laser precision tip)
+  // 2: Precision (Crosshair focus provided by user)
   <svg
     key="precision"
     className="h-6 w-6 text-clinical-blue"
-    fill="none"
     viewBox="0 0 24 24"
+    fill="none"
     stroke="currentColor"
-    strokeWidth="1.75"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     aria-hidden="true"
   >
-    {/* Robotic arm base, articulated joints, and surgical effector */}
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3 21h6" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6 21v-4l5-5" />
-    <circle cx="11" cy="12" r="2" stroke="currentColor" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M13 12l5-5" />
-    <circle cx="18" cy="7" r="2" stroke="currentColor" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M20 5l2-2m-4 0l2 2" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l2 2" />
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
+    <path d="M4 16v2a2 2 0 0 0 2 2h2" />
+    <path d="M16 4h2a2 2 0 0 1 2 2v2" />
+    <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
+    <path d="M9 12l6 0" />
+    <path d="M12 9l0 6" />
   </svg>,
 
   // 3: Preserving What Matters (Protective joint preservation shield with native ligament cross)
@@ -61,22 +60,35 @@ const pillarIcons = [
     <circle cx="12" cy="12" r="2" fill="currentColor" fillOpacity="0.2" />
   </svg>,
 
-  // 4: Functional Recovery (Active walking rehabilitation gait & recovery ground line)
+  // 4: Functional Recovery (Medical cross with cycle recovery arrows, matching user reference)
   <svg
     key="recovery"
     className="h-6 w-6 text-clinical-blue"
-    fill="none"
     viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="1.75"
+    fill="none"
     aria-hidden="true"
   >
-    {/* Active walking patient recovering mobility */}
-    <circle cx="15" cy="4" r="2" stroke="currentColor" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M8 21l3-6 3-2 3 3 4-2" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M14 13l-2-2-4 2-3-2" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M11 15l-3 6" />
-    <path strokeLinecap="round" d="M3 21h18" strokeDasharray="2 3" />
+    {/* Center Medical Cross */}
+    <path
+      d="M11 7.5h2a1 1 0 0 1 1 1V10h1.5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H14v1.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V14H8.5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1H10V8.5a1 1 0 0 1 1-1Z"
+      fill="currentColor"
+    />
+    {/* Left counter-clockwise arc ending with downward arrow */}
+    <path
+      d="M17.5 6A8.5 8.5 0 0 0 3.5 12"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+    />
+    <polygon points="1,12 6,12 3.5,16.5" fill="currentColor" />
+    {/* Right counter-clockwise arc ending with upward arrow */}
+    <path
+      d="M6.5 18a8.5 8.5 0 0 0 14-6"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+    />
+    <polygon points="18,12 23,12 20.5,7.5" fill="currentColor" />
   </svg>,
 ];
 

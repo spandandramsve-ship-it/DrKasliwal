@@ -68,11 +68,36 @@ export default function SurgeonSection() {
             {/* 2. ~5,000 Procedures */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3.5 rounded-2xl border border-slate-200/90 bg-white p-3 sm:p-3.5 shadow-2xs hover:border-clinical-blue/40 transition-colors">
               <div className="flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-ice-blue text-clinical-blue border border-clinical-blue/25 shadow-2xs">
-                <svg className="h-4.5 w-4.5 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M18.5 2.5a2.121 2.121 0 0 1 3 3L11.5 15.5l-4 1 1-4 10-10z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 6l3 3" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.5 21h6" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.5 16l-2 2a1.5 1.5 0 0 0 0 2.1" />
+                {/* Procedures Performed (Medical log sheet, first aid case, and verified gear checkmark matching reference) */}
+                <svg className="h-4.5 w-4.5 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M10 5h7a2 2 0 0 1 2 2v6M6 10v9a2 2 0 0 0 2 2h6.5"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
+                  <path d="M9 11.5h8M9 14.5h5M9 17.5h3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                  {/* Top-Left Medical Case */}
+                  <rect x="2" y="2.5" width="6.5" height="5.5" rx="1.2" fill="currentColor" />
+                  <path d="M3.8 2.5V1.7a.7.7 0 0 1 .7-.7h1.5a.7.7 0 0 1 .7.7v.8" stroke="currentColor" strokeWidth="1.2" />
+                  <path d="M5.25 4v2.5M4 5.25h2.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
+                  {/* Bottom-Right Verified Gear */}
+                  <g transform="translate(13.5, 13.5)">
+                    <circle cx="4.5" cy="4.5" r="4.2" fill="currentColor" />
+                    <path
+                      d="M4.5.3v1M4.5 7.7v1M.3 4.5h1M7.7 4.5h1M1.6 1.6l.7.7M6.7 6.7l.7.7M1.6 7.4l.7-.7M6.7 1.6l.7.7"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M2.8 4.6l1.2 1.3 2.6-2.7"
+                      stroke="white"
+                      strokeWidth="1.3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </g>
                 </svg>
               </div>
               <div className="min-w-0">
@@ -84,12 +109,29 @@ export default function SurgeonSection() {
             {/* 3. Joint Replacement */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3.5 rounded-2xl border border-slate-200/90 bg-white p-3 sm:p-3.5 shadow-2xs hover:border-clinical-blue/40 transition-colors">
               <div className="flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-ice-blue text-clinical-blue border border-clinical-blue/25 shadow-2xs">
-                <svg className="h-4.5 w-4.5 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 4.5c0 2.5 2 4 5 4s5-1.5 5-4" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v2.5" />
-                  <rect x="4.5" y="11.5" width="15" height="2.5" rx="1" stroke="currentColor" strokeWidth={1.8} />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v4" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.5 19.5h5" />
+                {/* Knee Joint Replacement Prosthetic matching user reference */}
+                <svg className="h-4.5 w-4.5 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  {/* Femur & Femoral Component */}
+                  <path
+                    d="M9 1h6v4c1.8.4 3.4 1.4 4.3 3 .6 1.1.6 2.1.2 3.1H4.5c-.4-1-.4-2 .2-3.1 1-1.6 2.5-2.6 4.3-3V1Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M7 8.3c1.2-.9 2.2-1.2 5-1.2s3.8.3 5 1.2c0 1.8-1 2.8-2.5 2.8s-1.8-1.4-2.5-1.4-1 1.4-2.5 1.4S7 10.1 7 8.3Z"
+                    fill="white"
+                    stroke="currentColor"
+                    strokeWidth="0.7"
+                  />
+                  {/* Tibial Polyethylene Spacer Bar */}
+                  <rect x="5.2" y="12.2" width="13.6" height="2" rx="0.4" fill="currentColor" />
+                  {/* Tibia Bone Tray & Stem */}
+                  <path
+                    d="M4.6 15.2h14.8c0 2-1 3.4-3 4.4-.7.4-1.4.9-1.4 2.2V23h-6v-1.2c0-1.3-.7-1.8-1.4-2.2-2-1-3-2.4-3-4.4Z"
+                    fill="currentColor"
+                  />
+                  {/* Stem & Keel white lines */}
+                  <rect x="10.8" y="15.2" width="2.4" height="6.6" fill="white" />
+                  <path d="M8.8 15.2l2 4M15.2 15.2l-2 4" stroke="white" strokeWidth="1" strokeLinecap="round" />
                 </svg>
               </div>
               <div className="min-w-0">
@@ -101,13 +143,36 @@ export default function SurgeonSection() {
             {/* 4. Arthroscopy */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3.5 rounded-2xl border border-slate-200/90 bg-white p-3 sm:p-3.5 shadow-2xs hover:border-clinical-blue/40 transition-colors">
               <div className="flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-ice-blue text-clinical-blue border border-clinical-blue/25 shadow-2xs">
-                <svg className="h-4.5 w-4.5 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                  <rect x="3" y="14" width="6.5" height="5.5" rx="1.2" stroke="currentColor" strokeWidth={1.8} />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.25 14v-2" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 15.5l9-9" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.5 5l3 3" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 3.5l1.5-1.5" />
-                  <circle cx="18" cy="5" r="0.75" fill="currentColor" />
+                {/* Circular Arthroscopic Joint View matching user reference */}
+                <svg className="h-4.5 w-4.5 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  {/* Scope Viewport Circle */}
+                  <circle cx="12" cy="12" r="9.75" stroke="currentColor" strokeWidth="1.75" />
+                  {/* Joint Head & Shaft */}
+                  <path
+                    d="M10 13c1.3 0 2.2.8 2.2 2s-.6 2.5-1.2 4.5H8.2c-.4-1.5-.7-3-.2-4.5.4-1.2 1-2 2-2Z"
+                    fill="currentColor"
+                  />
+                  <circle cx="10" cy="14" r="1.8" fill="currentColor" />
+                  <path
+                    d="M2.5 13.5c2.5-1.5 5.5-1 7.2.2"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                  {/* Arthroscope Camera from Right */}
+                  <path d="M21 11.5l-8.5 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <rect x="17.5" y="10" width="3.5" height="3" rx="0.6" fill="currentColor" />
+                  {/* Surgical Probe Instrument from Top */}
+                  <path d="M17 3.5l-4.5 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <rect
+                    x="14.8"
+                    y="3"
+                    width="2"
+                    height="4"
+                    rx="0.5"
+                    transform="rotate(-28 15.8 5)"
+                    fill="currentColor"
+                  />
                 </svg>
               </div>
               <div className="min-w-0">
