@@ -30,8 +30,8 @@ export default function JourneySection() {
         align="center"
         className="mb-8 sm:mb-10"
         action={
-          <Button href="/patient-guide/recovery-after-surgery" variant="navy" arrow className="w-full sm:w-auto text-center justify-center">
-            Recovery Guide
+          <Button href="/patient-guide#journey" variant="navy" arrow className="w-full sm:w-auto text-center justify-center">
+            Patient Journey Guide
           </Button>
         }
       />

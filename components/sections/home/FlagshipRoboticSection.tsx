@@ -11,7 +11,7 @@ const flagshipCards = [
     tag: "Complete Resurfacing",
     description: "For advanced arthritis when total joint resurfacing is needed with kinematic alignment.",
     feature: "Kinematic alignment",
-    href: "/robotic-knee-replacement-nashik",
+    href: "/knee#robotic-total-knee-replacement",
     image: "/images/procedures/implant_total_knee.jpg",
     alt: "Total knee replacement implant render",
   },
@@ -21,7 +21,7 @@ const flagshipCards = [
     tag: "Bone-Preserving",
     description: "For arthritis confined to one compartment, preserving healthy cartilage and natural ligaments.",
     feature: "Bone & ACL preserving",
-    href: "/robotic-partial-knee-replacement-nashik",
+    href: "/knee#partial-knee-replacement",
     image: "/images/procedures/implant_partial_knee.jpg",
     alt: "Partial knee unicompartmental implant render",
   },
@@ -31,7 +31,7 @@ const flagshipCards = [
     tag: "Complex Care",
     description: "For painful, loose, or worn-out previous replacements requiring precision realignment.",
     feature: "Specialist realignment",
-    href: "/revision-joint-replacement-nashik",
+    href: "/robotic-joint-replacement#revision-joint-replacement",
     image: "/images/procedures/implant_revision_knee.jpg",
     alt: "Revision knee replacement implant with stem render",
   },
@@ -50,7 +50,7 @@ export default function FlagshipRoboticSection() {
         actionPosition="right"
         className="mb-2 sm:mb-2.5"
         action={
-          <Button href="/robotic-knee-replacement-nashik" variant="navy" size="sm" arrow className="w-full sm:w-auto text-center justify-center">
+          <Button href="/knee#robotic-total-knee-replacement" variant="navy" size="sm" arrow className="w-full sm:w-auto text-center justify-center">
             Explore Robotic Knee
           </Button>
         }

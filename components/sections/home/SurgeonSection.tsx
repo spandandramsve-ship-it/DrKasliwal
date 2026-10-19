@@ -35,7 +35,7 @@ export default function SurgeonSection() {
 
           <div className="mt-1.5 space-y-0.5">
             <p className="text-base sm:text-lg font-bold text-clinical-blue">
-              M.S. Orthopaedics
+              M.S. Orthopaedics · Reg. No. MMC/2005/02/1098
             </p>
             <p className="text-sm sm:text-base font-medium text-slate-700">
               Fellowship-trained Joint Replacement &amp; Arthroscopy Surgeon
@@ -184,8 +184,8 @@ export default function SurgeonSection() {
 
           {/* Action Buttons */}
           <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <Button href="/dr-vishal-kasliwal" variant="navy" size="sm" arrow className="w-full sm:w-auto text-center justify-center">
-              Read Dr. Kasliwal&apos;s Story
+            <Button href="/about#dr-vishal-kasliwal" variant="navy" size="sm" arrow className="w-full sm:w-auto text-center justify-center">
+              About Dr. Kasliwal
             </Button>
             <Button href="/contact" variant="outline" size="sm" className="w-full sm:w-auto text-center justify-center">
               Book Consultation

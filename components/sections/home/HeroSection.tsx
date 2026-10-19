@@ -51,31 +51,31 @@ export default function HeroSection() {
             aria-label="Clinical focus areas"
             className="mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-x-2.5 gap-y-1.5 text-xs sm:text-sm text-white font-medium drop-shadow-[0_1px_8px_rgba(7,30,56,0.95)]"
           >
-            <Link href="/knee-specialist-nashik" className="text-white hover:text-[#E0BE86] transition-colors">
+            <Link href="/knee" className="text-white hover:text-[#E0BE86] transition-colors">
               Knee
             </Link>
             <span className="font-light text-white/60" aria-hidden="true">
               |
             </span>
-            <Link href="/hip-specialist-nashik" className="text-white hover:text-[#E0BE86] transition-colors">
+            <Link href="/hip" className="text-white hover:text-[#E0BE86] transition-colors">
               Hip
             </Link>
             <span className="font-light text-white/60" aria-hidden="true">
               |
             </span>
-            <Link href="/shoulder-arthroscopy-nashik" className="text-white hover:text-[#E0BE86] transition-colors">
+            <Link href="/arthroscopy#shoulder-arthroscopy" className="text-white hover:text-[#E0BE86] transition-colors">
               Shoulder
             </Link>
             <span className="font-light text-white/60" aria-hidden="true">
               |
             </span>
-            <Link href="/knee-arthroscopy-nashik" className="text-white hover:text-[#E0BE86] transition-colors">
+            <Link href="/arthroscopy" className="text-white hover:text-[#E0BE86] transition-colors">
               Arthroscopy
             </Link>
             <span className="font-light text-white/60" aria-hidden="true">
               |
             </span>
-            <Link href="/revision-joint-replacement-nashik" className="text-white hover:text-[#E0BE86] transition-colors">
+            <Link href="/robotic-joint-replacement#revision-joint-replacement" className="text-white hover:text-[#E0BE86] transition-colors">
               Revision Surgery
             </Link>
           </nav>
@@ -90,7 +90,7 @@ export default function HeroSection() {
               <span aria-hidden="true">→</span>
             </Link>
             <Link
-              href="/robotic-joint-replacement-nashik"
+              href="/robotic-joint-replacement"
               className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg border border-white/50 bg-navy-dark/30 backdrop-blur-xs px-5 py-3 sm:py-2.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/15 sm:text-base text-center"
             >
               <span>Explore Our Treatments</span>

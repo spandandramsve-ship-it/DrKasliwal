@@ -8,13 +8,29 @@ export interface BreadcrumbItem {
 }
 
 /** Visible breadcrumb trail + BreadcrumbList schema. "Home" is prepended automatically. */
-export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+export default function Breadcrumbs({
+  items,
+  tone = "light",
+  className = "mb-6",
+}: {
+  items: BreadcrumbItem[];
+  tone?: "light" | "dark";
+  className?: string;
+}) {
+  const isDark = tone === "dark";
   return (
-    <nav aria-label="Breadcrumb" className="mb-6">
+    <nav aria-label="Breadcrumb" className={className}>
       <JsonLd data={breadcrumbSchema(items)} />
-      <ol className="flex flex-wrap items-center gap-2 text-sm text-slate-600">
+      <ol
+        className={`flex flex-wrap items-center gap-2 text-sm ${
+          isDark ? "text-slate-300" : "text-slate-600"
+        }`}
+      >
         <li>
-          <Link href="/" className="hover:text-clinical-blue">
+          <Link
+            href="/"
+            className={isDark ? "text-slate-300 hover:text-white" : "hover:text-clinical-blue"}
+          >
             Home
           </Link>
         </li>
@@ -22,15 +38,21 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
           const isLast = index === items.length - 1;
           return (
             <li key={item.label} className="flex items-center gap-2">
-              <span className="text-slate-400" aria-hidden="true">
+              <span className={isDark ? "text-slate-400" : "text-slate-400"} aria-hidden="true">
                 /
               </span>
               {item.href && !isLast ? (
-                <Link href={item.href} className="hover:text-clinical-blue">
+                <Link
+                  href={item.href}
+                  className={isDark ? "text-slate-300 hover:text-white" : "hover:text-clinical-blue"}
+                >
                   {item.label}
                 </Link>
               ) : (
-                <span className="font-medium text-navy" aria-current="page">
+                <span
+                  className={`font-medium ${isDark ? "text-white" : "text-navy"}`}
+                  aria-current="page"
+                >
                   {item.label}
                 </span>
               )}

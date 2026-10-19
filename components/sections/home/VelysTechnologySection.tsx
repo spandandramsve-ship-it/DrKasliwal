@@ -25,7 +25,7 @@ export default function VelysTechnologySection() {
         actionPosition="right"
         className="mb-8 sm:mb-10"
         action={
-          <Button href="/velys-robotic-surgery" variant="navy" size="sm" arrow className="w-full sm:w-auto text-center justify-center">
+          <Button href="/robotic-joint-replacement#how-velys-works" variant="navy" size="sm" arrow className="w-full sm:w-auto text-center justify-center">
             How Robotic Surgery Works
           </Button>
         }

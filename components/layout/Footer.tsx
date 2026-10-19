@@ -97,6 +97,9 @@ export default function Footer() {
             <p>
               © <CopyrightYear /> {SITE_NAME} · {HOSPITAL_NAME}. All rights reserved.
             </p>
+            <p className="text-slate-300 font-medium">
+              Chief Joint Replacement Surgeon: Dr. Vishal Kasliwal · M.S. Orthopaedics · Reg. No. MMC/2005/02/1098
+            </p>
             <p>
               The information on this website is for patient education and does not replace a consultation with a
               qualified orthopaedic surgeon. Results vary between patients.

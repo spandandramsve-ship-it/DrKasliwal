@@ -10,17 +10,12 @@ import { SITE_NAME, PHONE_TEL, PHONE_DISPLAY } from "@/lib/constants";
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const toggleCategory = (title: string) => {
-    setOpenCategories((prev) => ({ ...prev, [title]: !prev[title] }));
-  };
 
   // Close menu automatically on route change
   useEffect(() => {
@@ -101,87 +96,26 @@ export default function MobileMenu() {
           <nav className="flex-1 overflow-y-auto px-4 py-3 sm:px-6" aria-label="Main Menu">
             <div className="divide-y divide-slate-100">
               {mainNavCategories.map((cat) => {
+                const catBase = cat.href ? cat.href.split("#")[0] : "";
                 const isCatActive =
-                  cat.href === "/"
+                  catBase === "/"
                     ? pathname === "/"
-                    : pathname === cat.href || (cat.href && pathname.startsWith(cat.href + "/"));
-                const hasItems = cat.items.length > 0;
-                const isExpanded = !!openCategories[cat.title];
-
-                if (!hasItems) {
-                  return (
-                    <div key={cat.title} className="py-1">
-                      <Link
-                        href={cat.href ?? "/"}
-                        aria-current={isCatActive ? "page" : undefined}
-                        onClick={() => setIsOpen(false)}
-                        className={`flex min-h-12 items-center rounded-xl px-2 font-heading text-lg transition-colors ${
-                          isCatActive ? "font-bold text-clinical-blue bg-ice-blue/60" : "font-bold text-navy hover:text-clinical-blue"
-                        }`}
-                      >
-                        {cat.title}
-                      </Link>
-                    </div>
-                  );
-                }
+                    : pathname === catBase || (catBase && pathname.startsWith(catBase + "/"));
 
                 return (
                   <div key={cat.title} className="py-1">
-                    <div className="flex min-h-12 items-center justify-between gap-2">
-                      <Link
-                        href={cat.href ?? "/"}
-                        aria-current={isCatActive ? "page" : undefined}
-                        onClick={() => setIsOpen(false)}
-                        className={`flex-1 py-3 px-2 font-heading text-lg transition-colors ${
-                          isCatActive ? "font-bold text-clinical-blue" : "font-bold text-navy hover:text-clinical-blue"
-                        }`}
-                      >
-                        {cat.title}
-                      </Link>
-
-                      <button
-                        type="button"
-                        onClick={() => toggleCategory(cat.title)}
-                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-clinical-blue hover:bg-ice-blue active:scale-95 transition-all"
-                        aria-label={`Toggle ${cat.title} submenu`}
-                        aria-expanded={isExpanded}
-                      >
-                        <span
-                          className={`text-xl font-light leading-none transition-transform duration-200 ${
-                            isExpanded ? "rotate-45 text-navy" : "text-clinical-blue"
-                          }`}
-                          aria-hidden="true"
-                        >
-                          +
-                        </span>
-                      </button>
-                    </div>
-
-                    {isExpanded && (
-                      <div className="mb-2 mt-1 rounded-2xl bg-slate-50/70 p-2">
-                        <ul className="space-y-0.5">
-                          {cat.items.map((item) => {
-                            const isItemActive = pathname === item.href;
-                            return (
-                              <li key={item.href}>
-                                <Link
-                                  href={item.href}
-                                  aria-current={isItemActive ? "page" : undefined}
-                                  onClick={() => setIsOpen(false)}
-                                  className={`flex min-h-11 items-center px-3 py-2 rounded-xl text-[15px] transition-colors ${
-                                    isItemActive
-                                      ? "bg-white font-bold text-clinical-blue shadow-2xs ring-1 ring-clinical-blue/20"
-                                      : "text-slate-700 hover:text-navy hover:bg-white/60"
-                                  }`}
-                                >
-                                  {item.label}
-                                </Link>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                    )}
+                    <Link
+                      href={cat.href ?? "/"}
+                      aria-current={isCatActive ? "page" : undefined}
+                      onClick={() => setIsOpen(false)}
+                      className={`flex min-h-12 items-center rounded-xl px-3 font-heading text-lg transition-colors ${
+                        isCatActive
+                          ? "font-bold text-clinical-blue bg-ice-blue/60"
+                          : "font-bold text-navy hover:text-clinical-blue"
+                      }`}
+                    >
+                      {cat.title}
+                    </Link>
                   </div>
                 );
               })}

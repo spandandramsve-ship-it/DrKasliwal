@@ -1,8 +1,6 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import HeroSection from "@/components/sections/home/HeroSection";
 import TrustBar from "@/components/sections/home/TrustBar";
-import ReviewsMarquee, { ReviewsMarqueeSkeleton } from "@/components/sections/home/ReviewsMarquee";
 import CareGrid from "@/components/sections/home/CareGrid";
 import FlagshipRoboticSection from "@/components/sections/home/FlagshipRoboticSection";
 import PhilosophySection from "@/components/sections/home/PhilosophySection";
@@ -62,10 +60,6 @@ export default function HomePage() {
       {/* 4.9 Kasliwal Super Speciality Hospital */}
       <HospitalSection />
 
-      {/* 4.10 Patient Stories & Verified Reviews (Combined) */}
-      <Suspense fallback={<ReviewsMarqueeSkeleton />}>
-        <ReviewsMarquee />
-      </Suspense>
 
       {/* 4.11 Knowledge Centre Preview */}
       <KnowledgePreviewSection />

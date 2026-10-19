@@ -14,7 +14,7 @@ const careImages = [
     alt: "Modern hip joint reconstruction and ceramic replacement",
   },
   {
-    src: "/images/procedures/card_shoulder_care_new.jpg",
+    src: "/images/procedures/card_shoulder_care.jpg",
     alt: "Keyhole shoulder arthroscopy and rotator cuff repair",
   },
   {

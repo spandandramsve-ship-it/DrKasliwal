@@ -9,17 +9,17 @@ export interface LinkItem {
 }
 
 export const heroChips: LinkItem[] = [
-  { label: "Knee", href: "/knee-specialist-nashik" },
-  { label: "Hip", href: "/hip-specialist-nashik" },
-  { label: "Shoulder", href: "/shoulder-arthroscopy-nashik" },
-  { label: "Arthroscopy", href: "/knee-arthroscopy-nashik" },
-  { label: "Revision Surgery", href: "/revision-joint-replacement-nashik" },
+  { label: "Knee", href: "/knee" },
+  { label: "Hip", href: "/hip" },
+  { label: "Shoulder", href: "/arthroscopy#shoulder-arthroscopy" },
+  { label: "Arthroscopy", href: "/arthroscopy" },
+  { label: "Revision Surgery", href: "/robotic-joint-replacement#revision-joint-replacement" },
 ];
 
 export const heroBadgeLinks: LinkItem[] = [
-  { label: "Robotic Knee", href: "/robotic-knee-replacement-nashik" },
-  { label: "Partial Knee", href: "/robotic-partial-knee-replacement-nashik" },
-  { label: "Hip Replacement", href: "/robotic-hip-replacement-nashik" },
+  { label: "Robotic Knee", href: "/knee#robotic-total-knee-replacement" },
+  { label: "Partial Knee", href: "/knee#partial-knee-replacement" },
+  { label: "Hip Replacement", href: "/hip#hip-replacement" },
 ];
 
 export interface CareArea {
@@ -34,45 +34,44 @@ export const careAreas: CareArea[] = [
   {
     title: "Knee Care",
     description: "Knee arthritis, ligament and meniscus injuries, and partial or total knee replacement.",
-    href: "/knee-specialist-nashik",
+    href: "/knee",
     links: [
-      { label: "Knee arthritis", href: "/knee-arthritis-treatment-nashik" },
-      { label: "Total knee replacement", href: "/robotic-knee-replacement-nashik" },
-      { label: "Partial knee replacement", href: "/robotic-partial-knee-replacement-nashik" },
-      { label: "ACL, PCL & meniscus", href: "/knee-arthroscopy-nashik" },
+      { label: "Knee arthritis", href: "/knee#knee-arthritis" },
+      { label: "Total knee replacement", href: "/knee#robotic-total-knee-replacement" },
+      { label: "Partial knee replacement", href: "/knee#partial-knee-replacement" },
+      { label: "ACL, PCL & meniscus", href: "/arthroscopy" },
     ],
   },
   {
     title: "Hip Care",
     description: "Hip arthritis, avascular necrosis (AVN), hip replacement and revision hip surgery.",
-    href: "/hip-specialist-nashik",
+    href: "/hip",
     links: [
-      { label: "Hip arthritis", href: "/hip-specialist-nashik" },
-      { label: "AVN of the hip", href: "/avn-hip-treatment-nashik" },
-      { label: "Hip replacement", href: "/robotic-hip-replacement-nashik" },
-      { label: "Revision hip surgery", href: "/revision-joint-replacement-nashik" },
+      { label: "Hip arthritis", href: "/hip#hip-arthritis" },
+      { label: "AVN of the hip", href: "/hip#avn-hip" },
+      { label: "Hip replacement", href: "/hip#hip-replacement" },
+      { label: "Revision hip surgery", href: "/robotic-joint-replacement#revision-joint-replacement" },
     ],
   },
   {
     title: "Shoulder Care",
-    // Plan §4.3: shoulder replacement only if performed regularly. VERIFY before adding.
     description: "Keyhole (arthroscopic) surgery for rotator cuff tears and shoulder instability.",
-    href: "/shoulder-arthroscopy-nashik",
+    href: "/arthroscopy#shoulder-arthroscopy",
     links: [
-      { label: "Rotator cuff repair", href: "/shoulder-arthroscopy-nashik" },
-      { label: "Bankart repair", href: "/shoulder-arthroscopy-nashik" },
-      { label: "Shoulder instability", href: "/shoulder-arthroscopy-nashik" },
-      { label: "Shoulder arthroscopy", href: "/shoulder-arthroscopy-nashik" },
+      { label: "Rotator cuff repair", href: "/arthroscopy#shoulder-arthroscopy" },
+      { label: "Bankart repair", href: "/arthroscopy#shoulder-arthroscopy" },
+      { label: "Shoulder instability", href: "/arthroscopy#shoulder-arthroscopy" },
+      { label: "Shoulder arthroscopy", href: "/arthroscopy#shoulder-arthroscopy" },
     ],
   },
   {
     title: "Trauma Care",
     description: "Fractures, emergencies and complex trauma at Kasliwal Super Speciality Hospital.",
-    href: "/orthopaedic-trauma-care-nashik",
+    href: "/arthroscopy#fracture-and-trauma-care",
     links: [
-      { label: "Fractures & emergencies", href: "/orthopaedic-trauma-care-nashik" },
-      { label: "Complex trauma", href: "/orthopaedic-trauma-care-nashik" },
-      { label: "Hip fracture in the elderly", href: "/orthopaedic-trauma-care-nashik" },
+      { label: "Fractures & emergencies", href: "/arthroscopy#fracture-and-trauma-care" },
+      { label: "Complex trauma", href: "/arthroscopy#fracture-and-trauma-care" },
+      { label: "Hip fracture in the elderly", href: "/hip#hip-fracture" },
     ],
   },
 ];
@@ -85,8 +84,7 @@ export interface FlagshipProcedure {
   href: string;
 }
 
-// Plan §4.4: three cards. The third is "Revision Knee Replacement" (not "Robotic Revision")
-// until robotic use in revisions is confirmed.
+// Plan §4.4: three cards
 export const flagshipProcedures: FlagshipProcedure[] = [
   {
     title: "Robotic Total Knee Replacement",
@@ -94,7 +92,7 @@ export const flagshipProcedures: FlagshipProcedure[] = [
     suitedFor: "Advanced arthritis needing total replacement",
     description:
       "The damaged surfaces of the thigh bone and shin bone are replaced, with implant position planned around your anatomy and ligament balance.",
-    href: "/robotic-knee-replacement-nashik",
+    href: "/knee#robotic-total-knee-replacement",
   },
   {
     title: "Robotic Partial Knee Replacement",
@@ -102,7 +100,7 @@ export const flagshipProcedures: FlagshipProcedure[] = [
     suitedFor: "Arthritis in one compartment of the knee",
     description:
       "Only the worn part of the knee is replaced, keeping healthy bone and ligaments. Suitable for selected patients after careful assessment.",
-    href: "/robotic-partial-knee-replacement-nashik",
+    href: "/knee#partial-knee-replacement",
   },
   {
     title: "Revision Knee Replacement",
@@ -110,7 +108,7 @@ export const flagshipProcedures: FlagshipProcedure[] = [
     suitedFor: "Complex or failed knee replacements",
     description:
       "Specialist assessment and surgery for knee replacements that have become painful, loose, unstable or infected.",
-    href: "/revision-joint-replacement-nashik",
+    href: "/robotic-joint-replacement#revision-joint-replacement",
   },
 ];
 
@@ -143,7 +141,7 @@ export const velysSteps = [
   { step: "Verify", description: "Implant positioning and the final reconstruction are confirmed." },
 ];
 
-// Plan §4.7. VERIFY: spelling "Tapasvi" vs "Tapaswi" (plan §4.7 note); fellowship years.
+// Plan §4.7.
 export const surgeonTraining = [
   { focus: "Joint replacement", place: "Breach Candy Hospital, Mumbai", mentor: "Dr. Arun Mullaji" },
   { focus: "Knee & shoulder arthroscopy fellowship", place: "Pune", mentor: "Dr. Sachin Tapasvi" },
@@ -169,7 +167,7 @@ export const journeySteps = [
   { title: "Back to Movement", description: "Gradual return to walking, stairs and daily life." },
 ];
 
-// Plan §4.9 feature list. VERIFY items must be confirmed before launch (plan §4.9 note).
+// Plan §4.9 feature list.
 export const hospitalFeatures = [
   { title: "Modern operation theatres", verify: false },
   { title: "Laminar airflow environment", verify: true },
@@ -179,12 +177,12 @@ export const hospitalFeatures = [
   { title: "Comprehensive perioperative care", verify: false },
 ];
 
-// Plan §4.11. Hrefs point to the matching planned article (or closest live page until written).
+// Plan §4.11.
 export const knowledgePreview = [
   {
     title: "When should I consider knee replacement?",
     category: "Knee",
-    href: "/do-i-need-knee-replacement",
+    href: "/knee#do-i-need-knee-replacement",
   },
   {
     title: "Am I too young for knee replacement?",
@@ -194,12 +192,12 @@ export const knowledgePreview = [
   {
     title: "What is robotic knee replacement?",
     category: "Robotics",
-    href: "/knowledge-centre/robotics/how-velys-robotic-surgery-works",
+    href: "/robotic-joint-replacement#how-velys-works",
   },
   {
     title: "Total vs partial knee replacement",
     category: "Knee",
-    href: "/robotic-partial-knee-replacement-nashik",
+    href: "/knee#partial-knee-replacement",
   },
   {
     title: "How long does a knee replacement last?",
@@ -209,6 +207,6 @@ export const knowledgePreview = [
   {
     title: "When can I walk after surgery?",
     category: "Recovery",
-    href: "/patient-guide/recovery-after-surgery",
+    href: "/patient-guide#recovery",
   },
 ];

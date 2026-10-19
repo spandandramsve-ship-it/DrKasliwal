@@ -113,7 +113,7 @@ export default function PhilosophySection() {
             preserve what matters in your own knee.
           </p>
           <div className="relative mt-auto pt-6 sm:pt-8">
-            <Button href="/surgical-philosophy" variant="outline-light" arrow className="w-full sm:w-auto text-center justify-center">
+            <Button href="/about#surgical-philosophy" variant="outline-light" arrow className="w-full sm:w-auto text-center justify-center">
               Our Surgical Philosophy
             </Button>
           </div>

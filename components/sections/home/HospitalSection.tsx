@@ -157,7 +157,7 @@ export default function HospitalSection() {
           </div>
 
           <div className="mt-7">
-            <Button href="/hospital" variant="navy" arrow className="w-full sm:w-auto text-center justify-center">
+            <Button href="/about#hospital" variant="navy" arrow className="w-full sm:w-auto text-center justify-center">
               Explore Our Hospital
             </Button>
           </div>
