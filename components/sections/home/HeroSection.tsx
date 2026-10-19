@@ -13,7 +13,7 @@ export default function HeroSection() {
           loop
           playsInline
           preload="auto"
-          poster="/images/doctor/hero_robotic_surgery.jpg"
+          poster="/images/hero_video_poster.jpg"
           className="h-full w-full object-cover object-[60%_center] sm:object-[75%_center] lg:object-[82%_center]"
           aria-hidden="true"
         >
