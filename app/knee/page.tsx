@@ -94,8 +94,8 @@ const kneeFaqs: FAQItem[] = [
 export default function KneePage() {
   return (
     <div className="bg-white">
-      {/* 1. Hero Section */}
-      <section className="bg-navy text-white py-10 sm:py-14">
+      {/* 1. Hero Section (Full Viewport Screen-Fit) */}
+      <section className="bg-navy text-white min-h-[calc(100dvh-4rem)] lg:min-h-[calc(100dvh-5rem)] flex flex-col justify-center py-8 lg:py-12">
         <Container>
           <Breadcrumbs
             items={[{ label: "Knee Treatment" }]}

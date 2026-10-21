@@ -11,18 +11,12 @@ export default function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="group fixed bottom-20 right-4 md:bottom-6 md:right-6 z-40 flex items-center justify-center p-1.5"
+      className="group fixed bottom-6 right-6 z-40 hidden md:flex items-center justify-center p-1"
     >
-      {/* Continuous expanding ping ripple */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-full bg-[#1b7a72]/40 animate-ping"
-      />
-
-      {/* Main button with continuous blinking glow & pulse effect */}
-      <span className="relative flex h-13 w-13 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#1b7a72] text-white shadow-lift animate-whatsapp-blink transition-transform duration-300 hover:scale-115 active:scale-95 group-hover:bg-[#15645d]">
+      {/* Main button with clean hospital green tone */}
+      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#1b7a72] text-white shadow-lift transition-transform duration-300 hover:scale-105 active:scale-95 group-hover:bg-[#15645d]">
         <svg
-          className="h-7 w-7 sm:h-8 sm:w-8 fill-current"
+          className="h-7 w-7 fill-current"
           viewBox="0 0 24 24"
           aria-hidden="true"
         >

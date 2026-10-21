@@ -83,7 +83,7 @@ export default function Footer() {
                 <ul className="space-y-1">
                   {section.links.map((link) => (
                     <li key={link.href}>
-                      <Link href={link.href} className="inline-flex min-h-9 items-center hover:text-white">
+                      <Link href={link.href} className="inline-flex min-h-11 items-center hover:text-white">
                         {link.label}
                       </Link>
                     </li>

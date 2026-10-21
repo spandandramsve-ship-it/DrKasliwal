@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,19 +8,25 @@ import { usePathname } from "next/navigation";
 import { mainNavCategories } from "@/data/navigation";
 import { SITE_NAME, PHONE_TEL, PHONE_DISPLAY } from "@/lib/constants";
 
+const emptySubscribe = () => () => {};
+
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const [prevPathname, setPrevPathname] = useState(pathname);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Hydration-safe client check without cascading renders (React 18/19 pattern)
+  const isMounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
-  // Close menu automatically on route change
-  useEffect(() => {
+  // Close menu on route change during render
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setIsOpen(false);
-  }, [pathname]);
+  }
 
   // Lock page scroll and allow Escape to close while the menu is open
   useEffect(() => {
@@ -50,7 +56,7 @@ export default function MobileMenu() {
       </button>
 
       {/* Full-screen mobile navigation drawer rendered via Portal directly into document.body */}
-      {isOpen && mounted && createPortal(
+      {isOpen && isMounted && createPortal(
         <div
           id="mobile-navigation-drawer"
           data-lenis-prevent

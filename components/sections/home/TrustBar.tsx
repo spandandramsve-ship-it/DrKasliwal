@@ -25,9 +25,9 @@ export default function TrustBar() {
     return () => observer.disconnect();
   }, []);
 
-  // Animated counters only for numerical stats
-  const [years, setYears] = useState(0);
-  const [procedures, setProcedures] = useState(0);
+  // Animated counters with initial real stats to prevent flash of 0
+  const [years, setYears] = useState(15);
+  const [procedures, setProcedures] = useState(5000);
 
   useEffect(() => {
     if (!isVisible) return;

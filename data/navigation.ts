@@ -37,6 +37,11 @@ export const mainNavCategories: NavigationCategory[] = [
     items: [],
   },
   {
+    title: "Gallery",
+    href: "/gallery",
+    items: [],
+  },
+  {
     title: "Contact",
     href: "/contact",
     items: [],
@@ -79,6 +84,7 @@ export const footerLinks: { category: string; links: NavigationLink[] }[] = [
       { label: "Hospital Facilities", href: "/about#hospital" },
       { label: "OPD Hours & Location", href: "/about#visit-us" },
       { label: "Book Consultation", href: "/book-appointment" },
+      { label: "Hospital Gallery", href: "/gallery" },
       { label: "Contact Us", href: "/contact" },
     ],
   },

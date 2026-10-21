@@ -91,7 +91,7 @@ export default function HeroSection() {
             </Link>
             <Link
               href="/robotic-joint-replacement"
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg border border-white/50 bg-navy-dark/30 backdrop-blur-xs px-5 py-3 sm:py-2.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/15 sm:text-base text-center"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-navy-dark/40 backdrop-blur-xs px-5 py-3 sm:py-2.5 text-sm font-semibold text-white transition-colors hover:bg-navy-dark/60 sm:text-base text-center"
             >
               <span>Explore Our Treatments</span>
               <span aria-hidden="true">→</span>
