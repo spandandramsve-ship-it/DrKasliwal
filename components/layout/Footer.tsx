@@ -29,9 +29,9 @@ export default function Footer() {
       <Wave fill="var(--color-navy)" className="-mb-px" />
       <div className="bg-navy">
         <div className="mx-auto max-w-7xl px-4 pt-10 pb-28 sm:px-6 sm:py-14 lg:px-8">
-          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-6">
+          <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {/* Brand + NAP block (must match Google Business Profile exactly, plan §12.2) */}
-            <div className="space-y-5 lg:col-span-2">
+            <div className="space-y-5 sm:col-span-2 md:col-span-3 lg:col-span-2">
               <div>
                 <span className="block font-heading text-2xl font-bold text-white">{SITE_NAME}</span>
                 <span className="mt-1 block text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">
