@@ -63,7 +63,7 @@ export function siteSchema() {
         "@type": "Hospital",
         "@id": SCHEMA_IDS.hospital,
         name: HOSPITAL_NAME,
-        logo: `${SITE_URL}/logos/kasliwal-logo-transparent.png`,
+        logo: `${SITE_URL}/logos/kasliwal-logo.png`,
         telephone: PHONE_TEL,
         address,
       },

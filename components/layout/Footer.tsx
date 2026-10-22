@@ -42,7 +42,7 @@ export default function Footer() {
               <address className="space-y-2 not-italic">
                 <div className="flex items-center gap-3">
                   <Image
-                    src="/logos/kasliwal-logo-transparent.png"
+                    src="/logos/kasliwal-logo.png"
                     alt={`${HOSPITAL_NAME} logo`}
                     width={56}
                     height={56}

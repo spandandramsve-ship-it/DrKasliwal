@@ -12,11 +12,11 @@ export default function Header() {
         {/* Brand Logo & Wordmark completely on left */}
         <Link href="/" className="flex min-w-0 shrink-0 items-center gap-2 leading-none sm:gap-3" aria-label={`${SITE_NAME}, home`}>
           <Image
-            src="/logos/kasliwal-logo-transparent.png"
+            src="/logos/kasliwal-logo.png"
             alt=""
             width={56}
             height={56}
-            className="h-9 w-9 sm:h-12 sm:w-12 2xl:h-14 2xl:w-14 shrink-0"
+            className="h-9 w-9 sm:h-12 sm:w-12 2xl:h-14 2xl:w-14 shrink-0 rounded-full"
             priority
           />
           <span className="whitespace-nowrap font-serif text-[15px] sm:text-lg md:text-xl xl:text-[1.3rem] 2xl:text-2xl font-bold tracking-tight text-navy">

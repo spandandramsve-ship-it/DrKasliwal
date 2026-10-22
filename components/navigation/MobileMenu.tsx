@@ -75,11 +75,11 @@ export default function MobileMenu() {
               aria-label={`${SITE_NAME}, home`}
             >
               <Image
-                src="/logos/kasliwal-logo-transparent.png"
+                src="/logos/kasliwal-logo.png"
                 alt=""
                 width={40}
                 height={40}
-                className="h-9 w-9 shrink-0"
+                className="h-9 w-9 shrink-0 rounded-full"
               />
               <span className="font-serif text-[16px] sm:text-lg font-bold tracking-tight text-navy truncate">
                 {SITE_NAME}
